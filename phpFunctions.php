@@ -54,5 +54,6 @@ function loginUser($conn, $email, $password) {
         return false; // User not found
     }
 }
+
 ?>
 

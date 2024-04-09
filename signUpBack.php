@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"])) {
     // Check if email is already used
     if (emailUsed($conn, $email)) {
         $_SESSION["signupError"] = "Email is already in use. Please use a different email.";
-        header("location:sign.html"); // Changed location to sign.html
+        header("location:index.html"); // Changed location to sign.html
         exit();
     }
 
