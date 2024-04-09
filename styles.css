@@ -55,6 +55,7 @@ nav a {
   position: absolute;
   top: 50%;
   left: 50%;
+  border-radius: 20px;
   transform: translate(-50%, -50%);
   background: #fff;
   padding: 50px 60px 70px;
@@ -98,12 +99,12 @@ form p a {
   text-decoration: none;
   color: #3c00a0;
 }
-
 .buttonField {
   width: 100%;
   display: flex;
+  flex-wrap: wrap; /* Enable wrapping */
   justify-content: space-between;
-
+  align-items: center; /* Center items vertically within the flex container */
 }
 
 .buttonField button {
@@ -117,7 +118,12 @@ form p a {
   cursor: pointer;
 }
 
+.buttonField #submitBtn {
+  flex-basis: 100%; /* Make the third button take the full width */
+  text-align: center; /* Center the text horizontally */
+  margin-top: 20px; /* Adjust the margin to move the button down */
+}
+
 .inputGroup {
   height: 250px;
-
 }
