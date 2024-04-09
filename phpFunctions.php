@@ -43,9 +43,6 @@ function loginUser($conn, $email, $password) {
     if ($result->num_rows == 1) {
         $user = $result->fetch_assoc();
         if (password_verify($password, $user['password'])) {
-            session_start();
-            $_SESSION["user_id"] = $user['id'];
-            $_SESSION["username"] = $user['username'];
             return true; // Successful login
         } else {
             return false; // Incorrect password
@@ -54,6 +51,8 @@ function loginUser($conn, $email, $password) {
         return false; // User not found
     }
 }
+
+
 
 ?>
 

@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"])) {
     // Attempt to create the user
     if (createUser($conn, $username, $email, $password)) {
         // Redirect to appropriate page after successful sign-up
-        header("location:success.php");
+        header("location:sign.html");
         exit();
     } else {
         $_SESSION["signupError"] = "Registration failed. Please try again.";
