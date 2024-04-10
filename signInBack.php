@@ -10,17 +10,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signin"])) {
 
     // Call the loginUser function from Phpfunctions.php
     $loginResult = loginUser($conn, $email, $password);
-
     if ($loginResult) {
-        header("location: index.php"); // Redirect to index.html if login is successful
+        echo '<script>window.location.href = "index.php";</script>'; // Redirect to index.php if login is successful
         exit();
     } else {
-        $_SESSION["signinError"] = "Incorrect email or password.";
-        header("location: sign.html"); // Redirect back to sign-in page if login fails
-        exit();
+        // Alert message for incorrect login credentials
+        echo '<script>alert("Login failed. Invalid email or password!");
+        window.location.href = "signin.html"
+        </script>';
     }
-} else {
-    header("location: sign.html"); // Redirect back to sign-in page if accessed directly without form submission
-    exit();
 }
 ?>

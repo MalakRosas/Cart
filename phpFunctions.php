@@ -1,13 +1,13 @@
 <?php
 function emailUsed($conn, $email){
     $sql = "SELECT * FROM users WHERE email = ?";
-    $stmt = mysqli_stmt_init($conn);
+    $stmt = mysqli_stmt_init($conn); //initializes a new MySQL statement object using the provided database connection 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location:Signup.php?error=sqlerror");
+        header("location:Sign.php?error=sqlerror");
         exit();
     }
-
-    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_bind_param($stmt, "s", $email); //The "s" argument specifies that the parameter is a string. 
+    //This binding helps prevent SQL injection attacks by separating the SQL code from the user input.
     mysqli_stmt_execute($stmt);
     $resultData = mysqli_stmt_get_result($stmt);
     mysqli_stmt_close($stmt);
@@ -34,8 +34,7 @@ function createUser($conn, $username, $email, $password){
     return true; // User created successfully
 }
 function loginUser($conn, $email, $password) {
-    $sql = "SELECT * FROM users WHERE email = ? LIMIT 1";
-    $stmt = $conn->prepare($sql);
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -51,8 +50,6 @@ function loginUser($conn, $email, $password) {
         return false; // User not found
     }
 }
-
-
 
 ?>
 
