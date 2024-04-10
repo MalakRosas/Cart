@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="paystyle.css">
+</head>
+
+<body>
+    <div class="paymentContainer">
+        <form action="paymentBack.php" method="post">
+            <div class="row">
+                <div class="column">
+                    <h3 class="paymentTitle">Billing Address</h3>
+                    <div class="paymentInputBox">
+                        <span>Full Name:</span>
+                        <input type="text" name="name" required placeholder="Enter Your Name">
+                    </div>
+                    <div class="paymentInputBox">
+                        <span>Email:</span>
+                        <input type="email" name="email" required placeholder="example@example.com">
+                    </div>
+                    <div class="paymentInputBox">
+                        <span>Address:</span>
+                        <input type="text" name="address" required placeholder="Room - Street - Locality">
+                    </div>
+                    <div class="paymentInputBox">
+                        <span>City:</span>
+                        <input type="text" name="city" required placeholder="Berlin">
+                    </div>
+                    <div class="flex">
+                        <div class="paymentInputBox">
+                            <span>State:</span>
+                            <input type="text" name="state" required placeholder="Germany">
+                        </div>
+                        <div class="paymentInputBox">
+                            <span>Zip Code:</span>
+                            <input type="number" name="zip" required placeholder="123456">
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <h3 class="paymentTitle">Payment</h3>
+                    <div class="paymentInputBox">
+                        <span>Cards Accepted :</span>
+                        <img src="images/imgcards.png" alt="">
+                    </div>
+                    <div class="paymentInputBox">
+                        <span>Name on Card :</span>
+                        <input type="text" name="nameOnCard" required placeholder="Mr.John Doe">
+                    </div>
+                    <div class="paymentInputBox">
+                        <span>Credit Card Number :</span>
+                        <input type="number" name="cardNumber" required placeholder="1111 2222 3333 4444">
+                    </div>
+                    <div class="paymentInputBox">
+                        <span>Exp. Month:</span>
+                        <input type="text" name="expMonth" required placeholder="January">
+                    </div>
+                    <div class="flex">
+                        <div class="paymentInputBox">
+                            <span>Exp . Year:</span>
+                            <input type="number" name="expYear" required placeholder="2025">
+                        </div>
+                        <div class="paymentInputBox">
+                            <span>CVV :</span>
+                            <input type="number" name="cvv" required placeholder="123">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="paymentSubmitBtn">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
