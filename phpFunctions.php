@@ -51,5 +51,43 @@ function loginUser($conn, $email, $password) {
     }
 }
 
+function createPayment($conn, $name, $email, $address, $city, $state, $zip, $nameOnCard, $cardNumber, $expMonth, $expYear, $cvv) {
+    // Check if the card number is already used
+    if (isCardNumberUsed($conn, $cardNumber)) {
+        return false; // Card number already used
+    }
+
+    $sql = "INSERT INTO payments (name, email, address, city, state, zip, name_on_card, card_number, exp_month, exp_year, cvv)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        return false; // SQL error
+    }
+
+    mysqli_stmt_bind_param($stmt, "sssssssssss", $name, $email, $address, $city, $state, $zip, $nameOnCard, $cardNumber, $expMonth, $expYear, $cvv);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    return true; // Payment successfully processed
+}
+
+function isCardNumberUsed($conn, $cardNumber) {
+    $sql = "SELECT * FROM payments WHERE card_number = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        return true; // Assume card is used in case of SQL error
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $cardNumber);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($result);
+
+    mysqli_stmt_close($stmt);
+
+    return $row !== null; // Return true if card number is found (i.e., already used), false otherwise
+}
+
+
+
 ?>
 

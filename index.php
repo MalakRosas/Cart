@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Cart Store</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style/styles.css">
   <script src="script.js"></script>
 
 </head>
@@ -15,7 +15,7 @@
 
     <nav class="navigation">
       <ul>
-        <li><a href="sign.html">Sign</a></li>
+        <li><a href="signin.html">Sign</a></li>
       </ul>
     </nav>
   </header>
