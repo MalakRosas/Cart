@@ -12,12 +12,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signin"])) {
     $loginResult = loginUser($conn, $email, $password);
 
     if ($loginResult) {
-        header("location: index.php"); // Redirect to index.php if login is successful
+        header("location: index.php"); // Redirect to index.html if login is successful
         exit();
     } else {
         $_SESSION["signinError"] = "Incorrect email or password.";
-        echo "<script>alert('Incorrect email or password. Please try again.');</script>"; // Show warning alert
-        header("location: sign.html"); // Redirect back to sign-in page
+        header("location: sign.html"); // Redirect back to sign-in page if login fails
         exit();
     }
 } else {
