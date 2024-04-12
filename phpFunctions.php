@@ -69,25 +69,62 @@ function createPayment($conn, $name, $email, $address, $city, $state, $zip, $nam
     mysqli_stmt_close($stmt);
     return true; // Payment successfully processed
 }
-
-function isCardNumberUsed($conn, $cardNumber) {
-    $sql = "SELECT * FROM payments WHERE card_number = ?";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        return true; // Assume card is used in case of SQL error
+// Function to validate credit card number using the Luhn algorithm
+function luhnCheck($number) {
+    $checksum = 0;
+    $length = strlen($number);
+    $first_digit = (int) substr($number, 0, 1); // Extract the first digit of the credit card number
+    if ($length != 16 || ($first_digit != 4 && $first_digit != 5 && $first_digit != 3 && $first_digit != 2)) { //4->visa card 2,5->mastercard, american express numbers start with 3.
+        return false;
+    }
+    for ($i = $length - 1; $i >= 0; $i--) { //looping from right to left 
+        $digit = intval($number[$i]);
+        if ($i % 2 == ($length % 2)) {
+            $digit *= 2; //doubling every second digit
+            if ($digit > 9) {// If the result of doubling a digit is greater than 9, then the two digits of the result are added together
+                $digit -= 9;
+            }
+        }
+        $checksum += $digit;
     }
 
-    mysqli_stmt_bind_param($stmt, "s", $cardNumber);
+    return $checksum % 10 == 0;
+}
+function isValidYear($year) {
+    if (!is_numeric($year) || $year < 0) {
+        return false;
+    }
+    // Get the current year
+    $currentYear = date('Y');
+    // Check if the year is in the future (greater than or equal to the current year)
+    if ($year < $currentYear) {
+        return false;
+    }
+    
+    return true; // valid year 
+}
+function isValidCVV($cvv) {
+    //must be 3 or 4 digits
+    if (!is_numeric($cvv) || ($cvv < 0) || ($cvv < 100 || $cvv > 9999)) {
+        return false;
+    }
+    return true; // valid cvv
+}
+ // a card number can not do more than one transaction per hour 
+function CheckMultipleTransactions($conn, $cardNumber,$timeFrame) {
+    $sql = "SELECT COUNT(*) AS transactionCount FROM payments WHERE card_number = ? AND transaction_date >= NOW() - INTERVAL ? HOUR";
+    // Initialize a prepared statement
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        return false; //if SQL statement preparation fails
+    } 
+    mysqli_stmt_bind_param($stmt, "si", $cardNumber, $timeFrame);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     $row = mysqli_fetch_assoc($result);
-
     mysqli_stmt_close($stmt);
-
-    return $row !== null; // Return true if card number is found (i.e., already used), false otherwise
+    // Check if there are any transactions within the specified time
+    return ($row['transactionCount'] > 0);
 }
-
-
-
 ?>
 
