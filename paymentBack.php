@@ -16,22 +16,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nameOnCard = $_POST['nameOnCard'];
     $cardNumber = $_POST['cardNumber'];
     $expMonth = $_POST['expMonth'];
-    $expYear = $_POST['expYear'];
+    $expYear = $_POST['exspYear'];
     $cvv = $_POST['cvv'];
 
-    // Validate form data (you can add more validation if needed)
-
+    // Validate ZIP code format
+    $zip = (string)$zip;
+    if (!preg_match("/^\d{5}$/", $zip)) { // ^ asserts the start of the string, \d matches any digit from 0 to 9 from 5 digits
+        echo   '<script>
+            alert("Invalid ZIP code format.")
+            window.location.href = "pay.html";
+        </script>';
+        exit();
+    }
+    if (!luhnCheck($cardNumber)) {
+        echo   '<script>
+            alert("Invalid credit card number.")
+            window.location.href = "pay.html";
+        </script>';
+        exit();
+    }
+    if(!isValidYear($expYear)){
+        echo   '<script>
+            alert("Invalid card expiration date.")
+            window.location.href = "pay.html";
+        </script>';
+    }
+    if(!isValidCVV($cvv)){
+        echo   '<script>
+            alert(" Invalid cvv.")
+            window.location.href = "pay.html";
+        </script>';
+    }
+    if (CheckMultipleTransactions($conn, $cardNumber, 1)) { // each one hour
+        echo '<script>
+        alert("Cannot proceed with another transaction at the moment.")
+        window.location.href = "pay.html";
+        </script>';
+    } else {
+        echo '<script>
+        alert("Proceed with the transaction.")
+        window.location.href = "pay.html";
+        </script>';
+    }    
     // Insert payment information into the database
     if (createPayment($conn, $name, $email, $address, $city, $state, $zip, $nameOnCard, $cardNumber, $expMonth, $expYear, $cvv)) {
         header("Location: index.php"); // Redirect to index.html after successful submission
-        exit();
+        exit();  
     } else {
         $_SESSION['paymentError'] = "Failed to process payment. Please try again."; // Set error message
-        header("Location: paymentPage.php"); // Redirect back to the payment page with an error message
+        header("Location: pay.html"); // Redirect back to the payment page with an error message
         exit();
     }
 } else {
-    header("Location: paymentPage.php"); // Redirect back to the payment page if accessed directly without form submission
+    header("Location: pay.html"); // Redirect back to the payment page if accessed directly without form submission
     exit();
 }
 ?>

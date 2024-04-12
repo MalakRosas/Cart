@@ -19,5 +19,6 @@ CREATE TABLE payments (
     card_number BIGINT NOT NULL,
     exp_month VARCHAR(255) NOT NULL,
     exp_year INT NOT NULL,
-    cvv INT NOT NULL
+    cvv INT NOT NULL,
+    transaction_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

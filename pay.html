@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Payment</title>
     <link rel="stylesheet" href="style/paystyle.css">
 </head>
 
@@ -16,57 +16,57 @@
                     <h3 class="paymentTitle">Billing Address</h3>
                     <div class="paymentInputBox">
                         <span>Full Name:</span>
-                        <input type="text" name="name" required placeholder="Enter Your Name">
+                        <input type="text" name="name" placeholder="Enter Your Name" minlength="4" required>
                     </div>
                     <div class="paymentInputBox">
                         <span>Email:</span>
-                        <input type="email" name="email" required placeholder="example@example.com">
+                        <input type="email" name="email" placeholder="example@example.com" required>
                     </div>
                     <div class="paymentInputBox">
                         <span>Address:</span>
-                        <input type="text" name="address" required placeholder="Room - Street - Locality">
+                        <input type="text" name="address" placeholder="Room - Street - Locality" required>
                     </div>
                     <div class="paymentInputBox">
                         <span>City:</span>
-                        <input type="text" name="city" required placeholder="Berlin">
+                        <input type="text" name="city" placeholder="Berlin" required>
                     </div>
                     <div class="flex">
                         <div class="paymentInputBox">
                             <span>State:</span>
-                            <input type="text" name="state" required placeholder="Germany">
+                            <input type="text" name="state" placeholder="Germany" required>
                         </div>
                         <div class="paymentInputBox">
                             <span>Zip Code:</span>
-                            <input type="number" name="zip" required placeholder="123456">
+                            <input type="number" name="zip" placeholder="12345" required>
                         </div>
                     </div>
                 </div>
                 <div class="column">
                     <h3 class="paymentTitle">Payment</h3>
                     <div class="paymentInputBox">
-                        <span>Cards Accepted :</span>
+                        <span>Accepted Cards:</span>
                         <img src="images/imgcards.png" alt="">
                     </div>
                     <div class="paymentInputBox">
                         <span>Name on Card :</span>
-                        <input type="text" name="nameOnCard" required placeholder="Mr.John Doe">
+                        <input type="text" name="nameOnCard" placeholder="Mr.John Doe" required>
                     </div>
                     <div class="paymentInputBox">
                         <span>Credit Card Number :</span>
-                        <input type="number" name="cardNumber" required placeholder="1111 2222 3333 4444">
+                        <input type="number" name="cardNumber" placeholder="1111 2222 3333 4444" required>
                     </div>
                     <div class="paymentInputBox">
                         <span>Exp. Month:</span>
-                        <input type="text" name="expMonth" required placeholder="January">
+                        <input type="text" name="expMonth" placeholder="January" required>
                     </div>
                     <div class="flex">
                         <div class="paymentInputBox">
                             <span>Exp . Year:</span>
-                            <input type="number" name="expYear" required placeholder="2025">
+                            <input type="number" name="expYear" placeholder="2025" required>
                         </div>
                         <div class="paymentInputBox">
                             <span>CVV :</span>
-                            <input type="number" name="cvv" required placeholder="123">
+                            <input type="number" name="cvv" placeholder="123" required>
                         </div>
                     </div>
                 </div>
