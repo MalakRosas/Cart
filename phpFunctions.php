@@ -126,5 +126,20 @@ function CheckMultipleTransactions($conn, $cardNumber,$timeFrame) {
     // Check if there are any transactions within the specified time
     return ($row['transactionCount'] > 0);
 }
+let slideIndex = 0;
+const slides = document.querySelectorAll('.mySlides');
+
+function showSlides() {
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = 'none';  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    slides[slideIndex - 1].style.display = 'block';  
+    setTimeout(showSlides, 1500); 
+}
+
+showSlides();
+
 ?>
 
