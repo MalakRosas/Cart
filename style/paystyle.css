@@ -15,7 +15,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #1f242d;
+    background-color: #161616;
 }
 
 /* Styling form */
@@ -76,7 +76,7 @@ form .row {
 form .paymentSubmitBtn{
     width: 100%;
     padding: 12px;
-    background: #8175d3;
+    background: #aa0404;
     border: none;
     outline: none;
     color: #fff;
@@ -88,10 +88,59 @@ form .paymentSubmitBtn{
     transition: 0.5s;
 }
 form .paymentSubmitBtn:hover{
-    background:#6a5acd;
+    background:#650101;
 }
 .paymentInputBox img{
     height: 34px;
     margin-top: 5px;
     filter: drop-shadow(0 0 1px #000);
+}.topnav {
+    background-color: #242222;
+    overflow: hidden;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a.account {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #aa0404;
+    color: white;
+}
+
+footer {
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.mySlides img {
+    width: 100%;
+    height: auto;
 }

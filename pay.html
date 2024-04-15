@@ -9,43 +9,25 @@
 </head>
 
 <body>
+    <div class="topnav">
+        <a class="active" href="index.html">Home</a>
+        <a href="index.html">About</a>
+        <a href="index.html">Categories</a>
+        <a href="index.html">offers</a>
+        <a href="index.html">shopping cart</a>
+        <a href="index.html" class="account">Account</a>
+        <a href="index.html" class="account">Sign-Up</a>
+        <a href="index.html" class="account">Sign-In</a>
+    </div>
+    
     <div class="paymentContainer">
         <form action="paymentBack.php" method="post">
             <div class="row">
                 <div class="column">
-                    <h3 class="paymentTitle">Billing Address</h3>
-                    <div class="paymentInputBox">
-                        <span>Full Name:</span>
-                        <input type="text" name="name" placeholder="Enter Your Name" minlength="4" required>
-                    </div>
-                    <div class="paymentInputBox">
-                        <span>Email:</span>
-                        <input type="email" name="email" placeholder="example@example.com" required>
-                    </div>
-                    <div class="paymentInputBox">
-                        <span>Address:</span>
-                        <input type="text" name="address" placeholder="Room - Street - Locality" required>
-                    </div>
-                    <div class="paymentInputBox">
-                        <span>City:</span>
-                        <input type="text" name="city" placeholder="Berlin" required>
-                    </div>
-                    <div class="flex">
-                        <div class="paymentInputBox">
-                            <span>State:</span>
-                            <input type="text" name="state" placeholder="Germany" required>
-                        </div>
-                        <div class="paymentInputBox">
-                            <span>Zip Code:</span>
-                            <input type="number" name="zip" placeholder="12345" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
                     <h3 class="paymentTitle">Payment</h3>
                     <div class="paymentInputBox">
                         <span>Accepted Cards:</span>
-                        <img src="images/imgcards.png" alt="">
+                        <img src="style/images/imgcards.png" alt="">
                     </div>
                     <div class="paymentInputBox">
                         <span>Name on Card :</span>
@@ -68,12 +50,19 @@
                             <span>CVV :</span>
                             <input type="number" name="cvv" placeholder="123" required>
                         </div>
+                        <div class="paymentInputBox">
+                            <span>Zip Code:</span>
+                            <input type="number" name="zip" placeholder="12345" required>
+                        </div>
                     </div>
                 </div>
             </div>
             <button type="submit" class="paymentSubmitBtn">Submit</button>
         </form>
     </div>
+        <footer>
+            <p>&copy;2024 PROJECT TEAM-1</p>
+        </footer>
 </body>
 
 </html>
