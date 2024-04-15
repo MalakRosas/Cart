@@ -5,11 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SignUp</title>
-    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="style/signup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
+    <div class="topnav">
+        <a class="active" href="index.html">Home</a>
+        <a href="index.html">About</a>
+        <a href="index.html">Categories</a>
+        <a href="index.html">offers</a>
+        <a href="index.html">shopping cart</a>
+        <a href="index.html" class="account">Account</a>
+        <a href="index.html" class="account">Sign-Up</a>
+        <a href="index.html" class="account">Sign-In</a>
+    </div>
     <div class="container">
         <div class="formBox">
             <h1 id="title">Sign Up</h1>
@@ -27,14 +37,34 @@
                         <i class="fa-solid fa-lock"></i>
                         <input type="password" placeholder="Password" name="password" required minlength="8">
                     </div>
-                </div>
-                <div class="buttonField">
-                    <button type="submit" name="signup">Submit</button>
-                    <button type="button" onclick="window.location.href='signin.html';">Sign In</button>
+                    <div class="inputField">
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" name="fullName" placeholder="Full Name" minlength="4" required>
+                    </div>
+                    <div class="inputField">
+                        <i class="fa-solid fa-location-dot"></i>
+                    <input type="text" name="address" placeholder="Room - Street - Locality" required>
+                    </div>
+                    <div class="inputField">
+                        <i class="fa-solid fa-city"></i>
+                        <input type="text" name="city" placeholder="City" required>
+                    </div>
+                    <div class="inputField">
+                        <i class="fa-solid fa-map-pin"></i>
+                        <input type="text" name="state" placeholder="State" required>
+                    </div>
+                    <div class="buttonField">
+                        <button type="submit" name="signup">Submit</button>
+                        <button type="button" onclick="window.location.href='signin.html';">Sign In</button>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
+    
+    <footer>
+        <p>&copy;2024 PROJECT TEAM-1</p>
+    </footer>
 </body>
 
 </html>
