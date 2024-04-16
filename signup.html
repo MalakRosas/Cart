@@ -11,14 +11,11 @@
 
 <body>
     <div class="topnav">
-        <a class="active" href="index.html">Home</a>
-        <a href="index.html">About</a>
+        <a class="active" href="index.php">Home</a>
+        <a href="about.html">About</a>
         <a href="index.html">Categories</a>
         <a href="index.html">offers</a>
         <a href="index.html">shopping cart</a>
-        <a href="index.html" class="account">Account</a>
-        <a href="index.html" class="account">Sign-Up</a>
-        <a href="index.html" class="account">Sign-In</a>
     </div>
     <div class="container">
         <div class="formBox">
@@ -52,6 +49,14 @@
                     <div class="inputField">
                         <i class="fa-solid fa-map-pin"></i>
                         <input type="text" name="state" placeholder="State" required>
+                    </div>
+                    <div class="inputField">
+                        <i class="fa-solid fa-user"></i>
+                        <select name="userType" required>
+                            <option value="" disabled selected>Select User Type</option>
+                            <option value="Client">Client</option>
+                            <option value="Seller">Seller</option>
+                        </select>
                     </div>
                     <div class="buttonField">
                         <button type="submit" name="signup">Submit</button>
