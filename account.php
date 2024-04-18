@@ -12,9 +12,8 @@
     <div class="topnav">
         <a class="active" href="index.php">Home</a>
         <a href="index.html">About</a>
-        <a href="index.html">Categories</a>
-        <a href="index.html">Offers</a>
-        <a href="index.html">Shopping Cart</a>
+        <a href="signup.html" class="account">Sign-Up</a>
+        <a href="signin.html" class="account">Sign-In</a>
     </div>
 
     <header style="background-image: url('style/images/img1.jpg');">
