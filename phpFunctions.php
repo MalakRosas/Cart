@@ -213,12 +213,16 @@ function getDepartmentId($conn, $departmentName) {
         return null; //departmentName is not found
     }
 }
-function addProduct($conn,$sellerId, $productName, $description, $price,$quantity, $departmentId, $image){
-    $sql = "INSERT INTO products(sellerId, productName, description, price, quantity, departmentId, image) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt,$sql)){ // -- > run this sql e
-        header("location:addProduct.php?error=somethingWrong"); // if sql statement has any errors
-        exit();
+
+function addProduct($conn, $sellerId, $productName, $description, $price, $quantity, $departmentId, $image) {
+    $sql = "INSERT INTO Products (sellerId, productName, description, price, quantity, departmentId, image) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("isssiss", $sellerId, $productName, $description, $price, $quantity, $departmentId, $image);
+    
+    if ($stmt->execute()) {
+        return true; // Product added successfully
+    } else {
+        return false; // Unable to add product
     }
 }
 ?>
