@@ -171,5 +171,54 @@ function CheckMultipleTransactions($conn, $cardNumber, $timeFrame) {
     mysqli_stmt_close($stmt);
     return ($row['transactionCount'] > 0);
 }
+function getUserType($conn, $email) {
+    // Prepare and execute the SQL query to retrieve the user type based on email
+    $sql = "SELECT UserType FROM Users WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
+    // Check if a row is returned
+    if ($result->num_rows == 1) {
+        // Fetch the row and return the user type
+        $row = $result->fetch_assoc();
+        return $row['UserType'];
+    } else {
+        // If no row is returned, return false (user not found)
+        return false;
+    }
+}
+function getUserId($conn, $email) {
+    $stmt = $conn->prepare("SELECT userId FROM Users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['userId'];
+    } else {
+        return null; // Handle case where email is not found
+    }
+}
+function getDepartmentId($conn, $departmentName) {
+    $stmt = $conn->prepare("SELECT departmentId FROM Departments WHERE departmentName = ?");
+    $stmt->bind_param("s", $departmentName);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['departmentId'];
+    } else {
+        return null; //departmentName is not found
+    }
+}
+function addProduct($conn,$sellerId, $productName, $description, $price,$quantity, $departmentId, $image){
+    $sql = "INSERT INTO products(sellerId, productName, description, price, quantity, departmentId, image) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt,$sql)){ // -- > run this sql e
+        header("location:addProduct.php?error=somethingWrong"); // if sql statement has any errors
+        exit();
+    }
+}
 ?>
