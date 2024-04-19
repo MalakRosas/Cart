@@ -15,9 +15,8 @@
         <a href="index.html">Categories</a>
         <a href="index.html">offers</a>
         <a href="index.html">shopping cart</a>
-        <a href="index.html" class="account">Account</a>
-        <a href="index.html" class="account">Sign-Up</a>
-        <a href="index.html" class="account">Sign-In</a>
+        <a href="signup.html" class="account">Sign-Up</a>
+        <a href="signin.html" class="account">Sign-In</a>
     </div>
     <header style="background-image: url('style/images/img1.jpg');">
         <div class="overlay"></div>
