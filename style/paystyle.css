@@ -9,7 +9,12 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
+/* Styling payment container */
+.paymentContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     background-color: #161616;
 }
 
@@ -18,7 +23,19 @@ body {
     padding: 40px;
     width: 700px;
     background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+}
+
+/* Styling form rows */
+form .row {
+    display: flex;
+    gap: 15px;
+}
+
+/* Styling columns */
+.row .column {
+    flex: 1 1 250px;
 }
 
 /* Styling payment title */
@@ -37,24 +54,26 @@ body {
 /* Styling input box spans */
 .paymentInputBox span {
     display: block;
-    /*to display upove it*/
     margin-bottom: 10px;
 }
 
-.paymentContainer {
-    margin-left: 26%;
-}
-
 /* Styling inputs */
-input {
-    width: 98%;
-    padding: 2%;
-    border-radius: 7px;
+.paymentInputBox input {
+    width: 100%;
     border: 1px solid #ccc;
+    padding: 10px 15px;
     font-size: 15px;
+    border-radius: 6px;
 }
+.column .flex {
+    display: flex;
+    gap: 15px;
 
-.paymentSubmitBtn {
+}
+.flex .paymentInputBox{/*flex:hoizontal placed input boxes*/
+    margin-top: 5px;
+}
+form .paymentSubmitBtn{
     width: 100%;
     padding: 12px;
     background: #aa0404;
@@ -66,13 +85,16 @@ input {
     cursor: pointer;
     font-size: 17px;
     margin-top: 5px;
+    transition: 0.5s;
 }
-
-.paymentSubmitBtn:hover {
-    background: #650101;
+form .paymentSubmitBtn:hover{
+    background:#650101;
 }
-
-.topnav {
+.paymentInputBox img{
+    height: 34px;
+    margin-top: 5px;
+    filter: drop-shadow(0 0 1px #000);
+}.topnav {
     background-color: #242222;
     overflow: hidden;
 }
@@ -84,7 +106,6 @@ input {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-    font-family: 'Poppins', sans-serif;
 }
 
 .topnav a.account {
@@ -110,10 +131,16 @@ footer {
     background-color: #111;
     color: #fff;
     text-align: center;
-    margin-top: 28px;
-    padding: 18px;
+    padding: 1rem 0;
 }
 
-footer p {
-    font-family: 'Poppins', sans-serif;
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.mySlides img {
+    width: 100%;
+    height: auto;
 }
