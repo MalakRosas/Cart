@@ -8,6 +8,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signin"])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    if ($email === "admin@gmail.com" && $password === "admin1234") {
+        header("Location: adminHome.html"); // Redirect to adminHome.html if credentials are "admin"
+        exit();
+    }
     // Call the loginUser function from Phpfunctions.php
     $loginResult = loginUser($conn, $email, $password);
     if ($loginResult) {
