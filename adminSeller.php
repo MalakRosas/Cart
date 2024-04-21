@@ -89,7 +89,7 @@ $result = $conn->query($sql);
                                     <td>
                                         <form action="" method="post">
                                             <input type="hidden" name="seller_id" value="<?php echo $row['userId']; ?>">
-                                            <button type="submit" onclick="return confirm('Are you sure you want to delete this seller?')">Delete</button>
+                                               <button type="submit" onclick="return confirm('Are you sure you want to delete this seller?')">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
