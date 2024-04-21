@@ -225,4 +225,18 @@ function addProduct($conn, $sellerId, $productName, $description, $price, $quant
         return false; // Unable to add product
     }
 }
+function addToCartAndUpdateQuantity($userId, $productId, $quantity, $unitPrice, $conn) {
+    // Insert into Cart table
+    $stmt = $conn->prepare("INSERT INTO Cart (userId, productId, quantity, unitPrice) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("iiid", $userId, $productId, $quantity, $unitPrice);
+    $stmt->execute();
+
+    // Decrement product quantity
+    $stmt = $conn->prepare("UPDATE Products SET quantity = quantity - ? WHERE productId = ?");
+    $stmt->bind_param("ii", $quantity, $productId);
+    $stmt->execute();
+}
+
+
+
 ?>
