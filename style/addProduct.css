@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
+/* Reset CSS */
 * {
     margin: 0;
     padding: 0;
@@ -7,21 +8,23 @@
     font-family: 'Poppins', sans-serif;
 }
 
+/* Style for the body */
 body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("images/459-background.png");
 }
 
+/* Style for the headers */
 p {
     color: white;
 }
 
 /* Style for the form */
 form {
-    width: 70%;
-    margin: 0 auto;
+        margin-top: 4%;
+        width: 40%;
+        margin-left: 30%;
 }
 
-/* Style for the form input fields */
 /* Style for the form input fields */
 .value {
     width: 100%;
@@ -31,7 +34,6 @@ form {
     border-radius: 5px;
     box-sizing: border-box;
     background-color: white;
-    /* Set the background color */
 }
 
 /* Style for the form button */
@@ -89,4 +91,7 @@ p {
 .topnav a.active {
     background-color: #aa0404;
     color: white;
+}
+::placeholder {
+    color: rgb(0, 0, 0);
 }
