@@ -50,94 +50,6 @@ nav a {
   color: #333;
 }
 
-/* signup styling */
-.container {
-  width: 100%;
-  height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 50, 0.8), rgba(0, 0, 50, 0.8)), url("images/459-background.png");
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-.formBox {
-  width: 90%;
-  max-width: 450px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 20px;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  padding: 50px 60px 70px;
-  text-align: center;
-  box-shadow: (0, 0, 50, 0.8);
-}
-
-.formBox h1 {
-  font-size: 30px;
-  margin-bottom: 60px;
-  color: #3c00a0;
-  position: relative;
-}
-
-.inputField {
-  background: #eaeaea;
-  /*input fileds mt2b4 lz2a feb3dha*/
-  margin: 15px 0;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  max-height: 65px;
-  overflow: hidden;
-  transition: max-height 0.5s;
-}
-
-input {
-  width: 100%;
-  background: transparent;
-  border: 0;
-  outline: 0;
-  padding: 18px 15px;
-}
-
-.inputField i {
-  margin-left: 15px;
-  color: #999;
-}
-
-form p a {
-  text-decoration: none;
-  color: #3c00a0;
-}
-.buttonField {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap; /* Enable wrapping */
-  justify-content: space-between;
-  align-items: center; /* Center items vertically within the flex container */
-}
-
-.buttonField button {
-  flex-basis: 48%;
-  background: #3c00a0;
-  color: #fff;
-  height: 40px;
-  border-radius: 20px;
-  border: 0;
-  outline: 0;
-  cursor: pointer;
-}
-
-.buttonField #submitBtn {
-  flex-basis: 100%; /* Make the third button take the full width */
-  text-align: center; /* Center the text horizontally */
-  margin-top: 20px; /* Adjust the margin to move the button down */
-}
-
-.inputGroup {
-  height: 250px;
-}
 .overlay {
   position: absolute;
   top: 0;
@@ -296,4 +208,20 @@ footer {
 .mySlides img {
   width: 100%;
   height: auto;
+}
+.Ab-cust {
+  max-width: 900px;
+  width: 100%;
+  margin: 10px auto;
+  padding: 24px;
+  background-color: rgba(255, 255, 255, 0.95);
+  /* Slightly transparent background */
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.Ab-cust h1 {
+  margin-bottom: 40px;
+  font-size: 2.5em;
+  color: var(--primary-color);
 }

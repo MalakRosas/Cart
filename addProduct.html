@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add product</title>
+    <link rel="stylesheet" href="style/addProduct.css">
+</head>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="index.php">Home</a>
+        <a href="about.html">About</a>
+        <a href="categories.html">Categories</a>
+        <a href="offers.html">Offers</a>
+        <a href="cart.html">Shopping Cart</a>
+        <a href="account.html" class="account">Account</a>
+        <a href="signup.html" class="account">Sign-Up</a>
+        <a href="signin.html" class="account">Sign-In</a>
+    </div>
+
+    <form action="addProduct.php" method="post" class="add" enctype="multipart/form-data">
+        <p>Product name:</p>
+        <input class="value" type="text" name="productName" placeholder="Product name" required><br>
+        <p>Description:</p>
+        <input class="value" type="text" name="description" placeholder="Description" required><br>
+        <p>Price:</p>
+        <input class="value" type="text" name="price" placeholder="Price" required><br>
+        <p>Quantity:</p>
+        <input class="value" type="text" name="quantity" placeholder="Quantity" required><br>
+        <p>Department name:</p>
+        <input class="value" type="text" name="departmentName" placeholder="Name" required><br>
+        <p>Image:</p>
+        <input class="value" type="file" name="photo" id="photo" accept="image/*">
+        <button id="myButton" name="add" class="button">Add product</button>
+    </form>
+
+</body>
+
+</html>

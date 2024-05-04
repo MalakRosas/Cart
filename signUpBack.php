@@ -1,25 +1,34 @@
 <?php
-session_start(); // Start the session to access session variables
+session_start();
 
-require_once 'connection.php'; // Include the database connection file
-require_once 'phpfunctions.php'; // Include the phpfunctions.php file
+require_once 'connection.php';
+require_once 'phpfunctions.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $userType = $_POST['userType']; // Assuming userType is passed from the form
 
-    // Check if email is already used
+    // Additional attributes for client users
+    $clientAttributes = null;
+    if ($userType === 'Client') {
+        $clientAttributes = array(
+            'city' => $_POST['city'],
+            'state' => $_POST['state'],
+            'phone_number' => $_POST['phone_number']
+        );
+    }
+
     if (emailUsed($conn, $email)) {
-        // Email is already in use, set error message in session
-        echo   '<script>
-            alert("Email already exists.")
+        echo '<script>
+            alert("Email already exists.");
             window.location.href = "signup.html";
         </script>';
         exit();
     }
-    // Attempt to create the user
-    if (createUser($conn, $username, $email, $password)) {
-        // Redirect to appropriate page after successful sign-up
+
+    if (createUser($conn, $username, $email, $password, $userType, $clientAttributes)) {
         header("location:signin.html");
         exit();
     } else {
@@ -31,5 +40,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"])) {
     header("location:signup.html");
     exit();
 }
-
 ?>

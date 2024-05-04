@@ -1,0 +1,94 @@
+/* Reset CSS */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lobster', cursive;
+}
+
+/* Header styles */
+header {
+    background-color: #242222;
+    padding: 10px 0;
+}
+
+.logo {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    margin-left: 20px;
+}
+
+.navigation {
+    float: right;
+}
+
+.navigation ul {
+    list-style-type: none;
+}
+
+.navigation ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.navigation ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Section styles */
+.CustomerNav {
+    background-image: url('imgs/Customer.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Ab-cust {
+    max-width: 900px;
+    width: 100%;
+    margin: 10px auto;
+    padding: 24px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.Ab-cust h1 {
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    color: var(--primary-color);
+}
+
+/* Table styles */
+#customerTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#customerTable th, #customerTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#customerTable th {
+    background-color: #f2f2f2;
+}
+
+#customerTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#customerTable tr:hover {
+    background-color: #ddd;
+}
