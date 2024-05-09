@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signin"])) {
         // Redirect based on user type
         $userType = getUserType($conn, $email);
         if ($userType === 'Seller') {
-            echo '<script>window.location.href = "addProduct.html";</script>'; // Redirect to addProduct.html if user type is Seller
+            echo '<script>window.location.href = "addProduct.php";</script>'; // Redirect to addProduct.html if user type is Seller
         } else {
             echo '<script>window.location.href = "index.php";</script>'; // Redirect to index.php for other user types
         }

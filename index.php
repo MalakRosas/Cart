@@ -3,70 +3,176 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style/styles.css">
-    <title>Hello world Shop</title>
+    <title>Lorem Ipsum</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style/nindex.css">
 </head>
 
 <body>
-    <div class="topnav">
-        <a class="active" href="index.php">Home</a>
-        <a href="about.html">About</a>
-        <a href="account.php" class="account">Account</a>
-        <a href="signup.html" class="account">Sign-Up</a>
-        <a href="signin.html" class="account">Sign-In</a>
-    </div>
-    <header style="background-image: url('style/images/img1.jpg');">
-        <div class="overlay"></div>
-        <div class="header-content">
-            <h1>HELLO WORLD SHOP-2024</h1>
-            <section id="search">
-                <input type="text" id="searchInput" placeholder="Search...">
-                <button onclick="search()">Search</button>
-            </section>
+    <section id="header">
+        <a href="#"><img src="style/images/index/logo.png" class="logo" alt=""></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.php" class="active">home</a></li>
+                <li><a href="shop.php">Shop</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="signin.html"><i class="fas fa-sign-in-alt"></i></a></li>
+            </ul>
         </div>
-    </header>
-    <main>
-        <section id="slideshow">
-            <div class="slideshow-container">
-                <div class="mySlides">
-                    <img src="style/images/img1.jpg" alt="Image 1">
+    </section>
+    <section id="hero">
+        <h4>Pellentesque est arcu</h4>
+        <h2>Lorem ipsum</h2>
+        <h1>Lorem</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+        <a href="shop.php" target="_parent"><button>SHOP!</button></a>
+    </section>
+    <section id="product1" class="section-p1">
+        <h2>Featured</h2>
+        <p>Summer Collection new modern</p>
+        <div class="pro-container">
+            <div class="pro">
+                <img src="style/images/index/products/f1.jpg" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="Star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>150 L.E</h4>
                 </div>
-                <div class="mySlides">
-                    <img src="style/images/img2.jpg" alt="Image 2">
-                </div>
-                <div class="mySlides">
-                    <img src="style/images/img3.jpg" alt="Image 3">
-                </div>
-                <div class="mySlides">
-                    <img src="style/images/img4.jpg" alt="Image 4">
-                </div>
-            </div> 
-        </section>
-        <section id="categories">
-            <h2>Categories</h2>
-            <div class="category-container">
-                <div class="category">
-                    <a href="#">
-                    <img src="style/images/img1.jpg" alt="Category 1">
-                </div>
-                <div class="category">
-                    <a href="#">
-                    <img src="style/images/img2.jpg" alt="Category 2">
-                </div>
-                <div class="category">
-                    <a href="#">
-                    <img src="style/images/img2.jpg" alt="Category 2">
-                </div>
-
+                <a href="#"><i class="fas fa-shopping-cart cart"></i></a>
             </div>
-        </section>
+            <div class="pro">
+                <img src="style/images/index/products/f1.jpg" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="Star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>150 L.E</h4>
+                </div>
+                <a href="#"><i class="fas fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro">
+                <img src="style/images/index/products/f1.jpg" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="Star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>150 L.E</h4>
+                </div>
+                <a href="#"><i class="fas fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro">
+                <img src="style/images/index/products/f1.jpg" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="Star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>150 L.E</h4>
+                </div>
+                <a href="#"><i class="fas fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro">
+                <img src="style/images/index/products/f1.jpg" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="Star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>150 L.E</h4>
+                </div>
+                <a href="#"><i class="fas fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro">
+                <img src="style/images/index/products/f1.jpg" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="Star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>150 L.E</h4>
+                </div>
+                <a href="#"><i class="fas fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro">
+                <img src="style/images/index/products/f1.jpg" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="Star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>150 L.E</h4>
+                </div>
+                <a href="#"><i class="fas fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro">
+                <img src="style/images/index/products/f1.jpg" alt="">
+                <div class="des">
+                    <span>adidas</span>
+                    <h5>Cartoon Astronaut T-Shirts</h5>
+                    <div class="Star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>150 L.E</h4>
+                </div>
+                <a href="#"><i class="fas fa-shopping-cart cart"></i></a>
+            </div>
 
-    </main>
-    <footer>
-        <p>&copy; 2024 PROJECT TEAM-1</p>
-    </footer>
-    <script src="script.js"></script>
+        </div>
+    </section>
+    <section id="banner" class="section-m1">
+        <h4>Lorem ipsum</h4>
+        <h2>Lorem <span>66%</span>Ipsum</h2>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script src="style/nindex.js"></script>
 </body>
 
 </html>

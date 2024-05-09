@@ -225,18 +225,79 @@ function addProduct($conn, $sellerId, $productName, $description, $price, $quant
         return false; // Unable to add product
     }
 }
+
 function addToCartAndUpdateQuantity($userId, $productId, $quantity, $unitPrice, $conn) {
     // Insert into Cart table
     $stmt = $conn->prepare("INSERT INTO Cart (userId, productId, quantity, unitPrice) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("iiid", $userId, $productId, $quantity, $unitPrice);
     $stmt->execute();
 
-    // Decrement product quantity
+    // Update product quantity
     $stmt = $conn->prepare("UPDATE Products SET quantity = quantity - ? WHERE productId = ?");
     $stmt->bind_param("ii", $quantity, $productId);
     $stmt->execute();
 }
 
 
+function getProductById($conn, $productId) {
+    $sql = "SELECT * FROM Products WHERE productId = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        // Handle SQL error
+        return null;
+    }
+    mysqli_stmt_bind_param($stmt, "i", $productId);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        return $row; // Return product data as an associative array
+    } else {
+        return null; // Product not found
+    }
+}
+
+
+// Function to fetch cart items for a specific user
+function getCartItems($conn, $userId) {
+    $cartItems = array();
+
+    // Fetch cart items for the given user ID from the database
+    $sql = "SELECT Products.productName, Products.price, Cart.quantity 
+            FROM Cart 
+            INNER JOIN Products ON Cart.productId = Products.productId 
+            WHERE Cart.userId = ?";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Loop through each cart item and add it to the cartItems array
+    while ($row = $result->fetch_assoc()) {
+        $cartItems[] = $row;
+    }
+
+    return $cartItems;
+}
+
+
+// Function to calculate the total price of items in the cart
+function calculateTotalPrice($cartItems) {
+    $totalPrice = 0;
+
+    // Loop through each cart item and calculate its total price
+    foreach ($cartItems as $cartItem) {
+        // Check if the "price" key exists in the current cart item
+        if (isset($cartItem['price'])) {
+            // Assuming the price is stored in the 'price' column of the 'Products' table
+            // Fetch the price of the product from the database and multiply it by the quantity
+            $totalPrice += $cartItem['price'] * $cartItem['quantity'];
+        }
+    }
+
+    return $totalPrice;
+}
 
 ?>
