@@ -75,7 +75,8 @@ header {
     margin-top: 20px;
 }
 
-#customerTable th, #customerTable td {
+#customerTable th,
+#customerTable td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
