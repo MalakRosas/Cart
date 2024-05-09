@@ -7,7 +7,7 @@
 }
 
 body {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("images/459-background.png");
+    background-image: linear-gradient(rgba(29, 28, 28, 0.8), rgba(0, 0, 0, 0.8)), url("images/blouse-2597205_640.jpg");
 }
 
 .container {
@@ -26,7 +26,7 @@ body {
     left: 50%;
     border-radius: 20px;
     transform: translate(-50%, -50%);
-    background: #fff;
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 40px 60px 70px;
     text-align: center;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
@@ -40,7 +40,7 @@ body {
 }
 
 .inputField {
-    background: #eaeaea;
+    background-color: rgba(225, 225, 225, 0.8);
     /*input fileds mt2b4 lz2a feb3dha*/
     margin: 15px 0;
     border-radius: 3px;
@@ -63,10 +63,6 @@ input {
     color: #999;
 }
 
-form p a {
-    text-decoration: none;
-    color: #3c00a0;
-}
 
 .buttonField {
     width: 100%;
@@ -93,46 +89,70 @@ form p a {
 }
 
 .buttonField button:nth-child(1) {
-    background-color: #ac0000;
+    background-color: #d99c41;
+}
+
+.buttonField button:nth-child(1):hover {
+    background-color: #915a07;
 }
 
 .inputGroup {
     height: 650px;
 }
 
-.topnav {
-    background-color: #242222;
-    overflow: hidden;
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 80px;
+    background: #1a1a1a;
+    /* Changed background color to darker gray */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
 }
 
-.topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#navbar li {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+#navbar li a {
     text-decoration: none;
-    font-size: 17px;
-    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #f0f0f0;
+    /* Changed link color to light gray */
+    transition: 0.3s ease;
 }
 
-.topnav a.account {
-    float: right;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
+#navbar li a:hover,
+#navbar li a.active {
+    color: #fff;
+    /* Changed link color to white */
 }
 
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
+#navbar li a.active:after,
+#navbar li a:hover::after {
+    content: "";
+    width: 30%;
+    height: 2px;
+    background: #faaed2;
+    /* Changed underline color to light pink */
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
 }
 
-.topnav a.active {
-    background-color: #aa0404;
-    color: white;
-}
 
 footer {
     background-color: #111;
@@ -147,7 +167,8 @@ footer p {
 }
 
 .selectBox {
-    background: #eaeaea;
+    background-color: rgba(225, 225, 225, 0.8);
+    /*input fileds mt2b4 lz2a feb3dha*/
     margin: 15px 0;
     border-radius: 3px;
     display: flex;
