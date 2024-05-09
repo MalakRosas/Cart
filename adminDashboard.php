@@ -25,21 +25,21 @@
                 </div>
             </div>
             <div class="sidebar">
-                <a href="#" class="active">
+                <a href="adminDashboard" class="active">
                     <span class="material-icons-sharp">grid_view</span>
-                    <h3>Lorem_ipsum 1</h3>
+                    <h3>Dashboard</h3>
                 </a>
-                <a href="#">
+                <a href="adminCustomer.php">
                     <span class="material-icons-sharp">grid_view</span>
-                    <h3>Lorem_ipsum 2</h3>
+                    <h3>Customers</h3>
                 </a>
-                <a href="#">
+                <a href="allProducts.php">
                     <span class="material-icons-sharp">grid_view</span>
-                    <h3>Lorem_ipsum 3</h3>
+                    <h3>Products</h3>
                 </a>
-                <a href="#">
+                <a href="adminSeller.php">
                     <span class="material-icons-sharp">grid_view</span>
-                    <h3>Lorem_ipsum 4</h3>
+                    <h3>Sellers</h3>
                 </a>
                 <a href="#">
                     <span class="material-icons-sharp">grid_view</span>
@@ -121,62 +121,36 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Lorem_ipsum</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
+                        <?php
+                            include('connection.php');
+                            // Query to fetch products
+                            $sql = "SELECT productName, productId FROM Products";
+                            $result = $conn->query($sql);
 
-                        </tr>
-                        <tr>
-                            <td>Lorem_ipsum</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-
-                        </tr>
-                        <tr>
-                            <td>Lorem_ipsum</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-
-                        </tr>
-                        <tr>
-                            <td>Lorem_ipsum</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-
-                        </tr>
-                        <tr>
-                            <td>Lorem_ipsum</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-
-                        </tr>
-                        <tr>
-                            <td>Lorem_ipsum</td>
-                            <td>85631</td>
-                            <td>Due</td>
-                            <td class="warning">Pending</td>
-                            <td class="primary">Details</td>
-
-                        </tr>
-
+                            if ($result->num_rows > 0) {
+                                // Output data of each row
+                                while($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" . $row["productName"] . "</td>";
+                                    echo "<td>" . $row["productId"] . "</td>";
+                                    echo "<td>Due</td>";
+                                    echo "<td class=\"warning\">Pending</td>";
+                                    echo "<td class=\"primary\">Details</td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='5'>0 results</td></tr>";
+                            }
+                            $conn->close(); // Close the database connection
+                        ?>
                     </tbody>
                 </table>
                 <a href="#">show All </a>
             </div>
         </main>
-        <!---->
+        <!-- Right sidebar -->
         <div class="right">
+            <!-- Right sidebar content -->
             <div class="top">
                 <button id="menu-btn">
                     <span class="material-icons-sharp">menu</span>
@@ -196,6 +170,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 </body>
 
 </html>
+

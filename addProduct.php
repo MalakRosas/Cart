@@ -17,7 +17,7 @@ if (isset($_POST['add'])) {
     $pdescription = $_POST['description'];
     $price = $_POST['price'];
     $pquantity = $_POST['quantity'];
-    $pdepartment = $_POST['department']; // Assuming departmentName is provided in the form
+    $pdepartment = $_POST['department']; 
     // Retrieve departmentId from the database based on departmentName
     $departmentId = getDepartmentId($conn, $pdepartment); // Assuming $conn is the database connection
 
