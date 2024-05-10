@@ -2,7 +2,7 @@
 session_start(); // Start the session to access session variables
 
 require_once 'connection.php'; // Include the database connection file
-require_once 'Phpfunctions.php'; // Include the Phpfunctions.php file
+require_once 'phpFunctions.php'; // Include the phpFunctions.php file
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signin"])) {
     $email = $_POST['email'];
@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signin"])) {
         header("Location: adminHome.html"); // Redirect to adminHome.html if credentials are "admin"
         exit();
     }
-    // Call the loginUser function from Phpfunctions.php
+    // Call the loginUser function from phpFunctions.php
     $loginResult = loginUser($conn, $email, $password);
     if ($loginResult) {
         // After successful login
@@ -22,17 +22,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signin"])) {
         // Redirect based on user type
         $userType = getUserType($conn, $email);
         if ($userType === 'Seller') {
-            echo '<script>window.location.href = "addProduct.php";</script>'; // Redirect to addProduct.html if user type is Seller
+            header("Location: addProduct.php"); // Redirect to addProduct.php if user type is Seller
+            exit();
         } else {
-            echo '<script>window.location.href = "index.php";</script>'; // Redirect to index.php for other user types
+            header("Location: index.php"); // Redirect to index.php for other user types
+            exit();
         }
-        exit();
     } else {
         // Alert message for incorrect login credentials
         echo '<script>alert("Login failed. Invalid email or password!");
         window.location.href = "signin.html";
         </script>';
+        exit();
     }
 }
-
 ?>
