@@ -20,7 +20,7 @@
                 <li><a href="#">Blog</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="cart.html">Cart</a></li>
+                <li><a href="cart.php">Cart</a></li>
                 <li><a href="signin.html"><i class="fas fa-sign-in-alt"></i></a></li>
             </ul>
         </div>
