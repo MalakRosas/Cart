@@ -17,7 +17,7 @@ if (isset($_POST['add'])) {
     $pdescription = $_POST['description'];
     $price = $_POST['price'];
     $pquantity = $_POST['quantity'];
-    $pdepartment = $_POST['department']; 
+    $pdepartment = $_POST['brands']; 
     // Retrieve departmentId from the database based on departmentName
     $departmentId = getDepartmentId($conn, $pdepartment); // Assuming $conn is the database connection
 
@@ -38,7 +38,7 @@ if (isset($_POST['add'])) {
 }
 
 // Fetch department names from the Departments table
-$departmentQuery = "SELECT departmentName FROM Departments";
+$departmentQuery = "SELECT brandName FROM Brands";
 $departmentResult = mysqli_query($conn, $departmentQuery);
 
 // Check if department query executed successfully
@@ -46,7 +46,7 @@ if ($departmentResult) {
     $departments = array();
     // Fetch each department name and store it in an array
     while ($row = mysqli_fetch_assoc($departmentResult)) {
-        $departments[] = $row['departmentName'];
+        $departments[] = $row['brandName'];
     }
 } else {
     // Handle error if department query fails
@@ -98,22 +98,22 @@ if ($sellerResult) {
 
         <p>Brand:</p>
         <select class="value" name="brand" required>
+        <option value="" disabled selected>Choose brand</option>
             <?php
             foreach ($departments as $department) {
                 echo "<option value='" . $department . "'>" . $department . "</option>";
             }
             ?>
         </select><br>
-
         <p>Seller:</p>
-        <select class="value" name="seller" required>
+            <select class="value" name="seller" required>
+            <option value="" disabled selected>Choose seller</option>
             <?php
             foreach ($sellers as $seller) {
                 echo "<option value='" . $seller . "'>" . $seller . "</option>";
             }
             ?>
         </select><br>
-
         <p>Description:</p>
         <input class="value" type="text" name="description" placeholder="Description" required><br>
 

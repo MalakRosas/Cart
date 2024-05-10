@@ -2,23 +2,13 @@
 // Include database connection
 require_once 'connection.php';
 
-// Check if form is submitted for deletion
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['customer_id'])) {
-    $customerID = $_POST['customer_id'];
-    // Delete customer query
-    $deleteQuery = "DELETE FROM Users WHERE userId = $customerID";
-    if ($conn->query($deleteQuery) === TRUE) {
-        // If deletion is successful, redirect to the same page
-        header("Location: adminCustomer.php");
-        exit;
-    } else {
-        // If deletion fails, display an error message
-        echo "Error deleting record: " . $conn->error;
-    }
-}
-
-// Fetch customers from the database
-$sql = "SELECT Users.userId, Users.username, Clients.city, Clients.state, Clients.phone_number FROM Users INNER JOIN Clients ON Users.userId = Clients.userId WHERE Users.UserType = 'Client'";
+// Fetch customers from the database along with their associated products
+$sql = "SELECT Users.userId, Users.username, Clients.city, Clients.state, Clients.phone_number, Products.productId, Products.productName 
+        FROM Users 
+        INNER JOIN Clients ON Users.userId = Clients.userId 
+        INNER JOIN Cart ON Users.userId = Cart.userId 
+        INNER JOIN Products ON Cart.productId = Products.productId 
+        WHERE Users.UserType = 'Client'";
 $result = $conn->query($sql);
 ?>
 
@@ -27,7 +17,7 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin Customer</title>
+    <title>Admin Customer</title>
     <link rel="stylesheet" href="style/adminCustomer.css">
 </head>
 <body>
@@ -53,6 +43,8 @@ $result = $conn->query($sql);
                             <th>City</th>
                             <th>State</th>
                             <th>Phone Number</th>
+                            <th>Product ID</th>
+                            <th>Product Name</th> 
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -67,6 +59,8 @@ $result = $conn->query($sql);
                                     <td><?php echo $row['city']; ?></td>
                                     <td><?php echo $row['state']; ?></td>
                                     <td><?php echo $row['phone_number']; ?></td>
+                                    <td><?php echo $row['productId']; ?></td> 
+                                    <td><?php echo $row['productName']; ?></td> 
                                     <td>
                                         <form action="" method="post">
                                             <input type="hidden" name="customer_id" value="<?php echo $row['userId']; ?>">
@@ -79,7 +73,7 @@ $result = $conn->query($sql);
                         } else {
                         ?>
                             <tr>
-                                <td colspan="6">No customers available</td>
+                                <td colspan="8">No customers available</td>
                             </tr>
                         <?php
                         }
