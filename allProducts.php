@@ -3,9 +3,9 @@
 require_once 'connection.php';
 
 // Fetch all products from the database
-$sql = "SELECT Products.productId, Products.productName, Products.description, Products.price, Products.quantity, Products.image, Departments.departmentName, Users.username AS sellerName
+$sql = "SELECT Products.productId, Products.productName, Products.description, Products.price, Products.quantity, Products.image, Brands.brandName, Users.username AS sellerName
         FROM Products 
-        INNER JOIN Departments ON Products.departmentId = Departments.departmentId
+        INNER JOIN Brands ON Products.brandId = Brands.brandId
         INNER JOIN Users ON Products.sellerId = Users.userId";
 $result = $conn->query($sql);
 ?>
