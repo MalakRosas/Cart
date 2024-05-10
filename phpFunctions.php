@@ -300,4 +300,35 @@ function calculateTotalPrice($cartItems) {
     return $totalPrice;
 }
 
+// Remove from cart and add to products
+function removeFromCartAndAddToProducts($conn, $productId, $userId) {
+    // Remove product from Cart
+    $sql_delete_cart = "DELETE FROM Cart WHERE userId = ? AND productId = ?";
+    $stmt_delete_cart = $conn->prepare($sql_delete_cart);
+    $stmt_delete_cart->bind_param("ii", $userId, $productId);
+    $stmt_delete_cart->execute();
+
+    // Get product details
+    $productDetails = getProductDetails($conn, $productId);
+
+    // Add product to Products table
+    $sql_insert_product = "INSERT INTO Products (sellerId, productName, description, price, quantity, departmentId, image, brand, Feature)
+                           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt_insert_product = $conn->prepare($sql_insert_product);
+    $stmt_insert_product->bind_param("issdiisss", $productDetails['sellerId'], $productDetails['productName'], $productDetails['description'], $productDetails['price'], $productDetails['quantity'], $productDetails['departmentId'], $productDetails['image'], $productDetails['brand'], $productDetails['Feature']);
+    $stmt_insert_product->execute();
+}
+
+// Get product details
+function getProductDetails($conn, $productId) {
+    $sql = "SELECT * FROM Products WHERE productId = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $productId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $productDetails = $result->fetch_assoc();
+    $stmt->close();
+    return $productDetails;
+}
+
 ?>
