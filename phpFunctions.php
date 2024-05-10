@@ -201,23 +201,23 @@ function getUserId($conn, $email) {
         return null; // Handle case where email is not found
     }
 }
-function getDepartmentId($conn, $departmentName) {
-    $stmt = $conn->prepare("SELECT departmentId FROM Departments WHERE departmentName = ?");
-    $stmt->bind_param("s", $departmentName);
+function getbrandId($conn, $brandName) {
+    $stmt = $conn->prepare("SELECT brandId FROM Brands WHERE brandName = ?");
+    $stmt->bind_param("s", $brandName);
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        return $row['departmentId'];
+        return $row['brandId'];
     } else {
-        return null; //departmentName is not found
+        return null; 
     }
 }
 
-function addProduct($conn, $sellerId, $productName, $description, $price, $quantity, $departmentId, $image) {
-    $sql = "INSERT INTO Products (sellerId, productName, description, price, quantity, departmentId, image) VALUES (?, ?, ?, ?, ?, ?, ?)";
+function addProduct($conn, $sellerId, $productName, $description, $price, $quantity, $brandId, $image) {
+    $sql = "INSERT INTO Products (sellerId, productName, description, price, quantity, brandId, image) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("isssiss", $sellerId, $productName, $description, $price, $quantity, $departmentId, $image);
+    $stmt->bind_param("isssiss", $sellerId, $productName, $description, $price, $quantity, $brandId, $image);
     
     if ($stmt->execute()) {
         return true; // Product added successfully
