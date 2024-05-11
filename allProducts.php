@@ -57,7 +57,7 @@ $result = $conn->query($sql);
                                     <td><?php echo $row['description']; ?></td>
                                     <td><?php echo $row['price']; ?></td>
                                     <td><?php echo $row['quantity']; ?></td>
-                                    <td><?php echo $row['departmentName']; ?></td>
+                                    <td><?php echo $row['brandName']; ?></td>
                                     <td><?php echo $row['sellerName']; ?></td>
                                     <td><img src="<?php echo $row['image']; ?>" alt="Product Image" width="100"></td>
                                 </tr>

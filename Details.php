@@ -5,29 +5,44 @@ session_start();
 include 'connection.php';
 include 'phpFunctions.php';
 
+// Check if the user is logged in
+if (!isset($_SESSION['userId'])) {
+    // If the user is not logged in, set an error message and redirect to the sign-in page
+    $_SESSION['errorMessage'] = "You need to sign in to add items to your cart.";
+    header("Location: signin.html");
+    exit();
+}
+
 // Check if the add to cart button is clicked
 if (isset($_POST['add_to_cart'])) {
-    // Check if the user is logged in
-    if (!isset($_SESSION['userId'])) {
-        // If user is not logged in, redirect to sign in page
-        header("Location: signin.html");
-        exit();
-    }
-
     // Process the form submission
     $productId = $_POST['productId'];
     $quantity = $_POST['quantity'];
     $product = getProductById($conn, $productId);
-    // Assuming $clientId is available, fetch it from session or database as needed
-    // Assuming $userId is available, fetch it from session or database as needed
-    $userId = $_SESSION['userId'];
 
-    if ($product) {
+    // Check if the product exists and its quantity is greater than zero
+    if ($product && $product['quantity'] > 0) {
+        // Assuming $userId is available, fetch it from session or database as needed
+        $userId = $_SESSION['userId'];
         addToCartAndUpdateQuantity($userId, $productId, $quantity, $product['price'], $conn);
+    } else {
+        // If the product quantity is zero or the product doesn't exist, set an error message and redirect back to the product page
+        $_SESSION['errorMessage'] = "This product is out of stock.";
+        header("Location: details.php?productId=" . $productId);
+        exit();
     }
 }
 
+// Check if the "Remove & Add to Products" button is clicked
+if (isset($_POST['removeFromCart'])) {
+    $productId = $_POST['productId'];
+    removeFromCartAndAddToProducts($conn, $productId, $userId);
+    // Redirect back to the cart page after removing the item
+    header("Location: cart.php");
+    exit; // Stop further execution
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -135,6 +150,11 @@ if (isset($_POST['add_to_cart'])) {
                 <span>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae gravida nibh, eu scelerisque ex. Aliquam cursus nunc vel nunc consequat fringilla. Duis feugiat rutrum pharetra. Suspendisse potenti. Nam dictum posuere arcu, et finibus sem ullamcorper id. Pellentesque aliquam ornare interdum. Aenean molestie massa nulla, quis blandit libero fringilla id. Nunc gravida, nulla eget pellentesque aliquam, turpis augue sodales felis, eget feugiat augue nibh at velit. Nunc bibendum augue ac mauris porta scelerisque.
                 </span>
+                <!-- Add the form for removing from cart -->
+                <form method="post">
+                    <input type="hidden" name="productId" value="<?php echo $productId; ?>">
+                    <button type="submit" name="removeFromCart">Remove & Add to Products</button>
+                </form>
             <?php
             } else {
                 echo "<p>Product not found.</p>";
@@ -142,15 +162,25 @@ if (isset($_POST['add_to_cart'])) {
             ?>
         </div>
 
-        <div id="error-message">
-            <p>You need to log in to add items to your cart.</p>
-            <div class="error-buttons">
-                <button onclick="closeErrorMessage()">Cancel</button>
-                <a href="signin.html"><button>Sign In</button></a>
+        <?php if (isset($_SESSION['errorMessage'])): ?>
+            <div id="error-message">
+                <p><?php echo $_SESSION['errorMessage']; ?></p>
+                <div class="error-buttons">
+                    <button onclick="closeErrorMessage()">Cancel</button>
+                    <a href="signin.html"><button>Sign In</button></a>
+                </div>
             </div>
-        </div>
+        <?php
+            unset($_SESSION['errorMessage']); // Clear the error message after displaying it
+        endif;
+        ?>
     </section>
+
+    <script>
+        function closeErrorMessage() {
+            document.getElementById('error-message').style.display = 'none';
+        }
+    </script>
 </body>
 
 </html>
-
