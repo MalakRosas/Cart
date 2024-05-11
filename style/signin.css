@@ -35,7 +35,6 @@ body {
     font-size: 30px;
     margin-bottom: 60px;
     color: #272529;
-    position: relative;
 }
 
 .inputField {
@@ -80,6 +79,7 @@ form p a {
 }
 
 .buttonField button {
+    transition: 1s;
     flex-basis: 48%;
     background-color: #373037;
     color: #fff;
@@ -99,6 +99,14 @@ form p a {
 
 .buttonField button:nth-child(1):hover {
     background-color: #915a07;
+}
+
+.buttonField button:nth-child(2) {
+    background-color: #373037;
+}
+
+.buttonField button:nth-child(2):hover {
+    background-color: #000000;
 }
 
 .inputGroup {

@@ -29,17 +29,6 @@
     border-radius: 10px;
 }
 
-/* Styling form rows */
-form .row {
-    display: flex;
-    gap: 15px;
-}
-
-/* Styling columns */
-.row .column {
-    flex: 1 1 250px;
-}
-
 /* Styling payment title */
 .paymentTitle {
     font-size: 20px;
@@ -69,17 +58,6 @@ form .row {
 
 }
 
-.column .flex {
-    display: flex;
-    gap: 15px;
-
-}
-
-.flex .paymentInputBox {
-    /*flex:hoizontal placed input boxes*/
-    margin-top: 5px;
-    background-color: rgba(255, 255, 255, 0.8);
-}
 
 form .paymentSubmitBtn {
     width: 100%;
@@ -166,13 +144,3 @@ footer {
     padding: 1rem 0;
 }
 
-.slideshow-container {
-    position: relative;
-    max-width: 100%;
-    overflow: hidden;
-}
-
-.mySlides img {
-    width: 100%;
-    height: auto;
-}
