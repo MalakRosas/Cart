@@ -88,7 +88,7 @@
             // Include your PHP connection file here
             include 'connection.php';
             // Fetch products with brand "MANGO" from the database
-            $sql = "SELECT * FROM Products WHERE brand = 'adidas'";
+            $sql = "SELECT * FROM Products WHERE brandid = 3";
             $result = $conn->query($sql);
 
             // Check if there are any products
@@ -137,7 +137,7 @@
             // Include your PHP connection file here
             include 'connection.php';
             // Fetch products with brand "MANGO" from the database
-            $sql = "SELECT * FROM Products WHERE brand = 'MANGO'";
+            $sql = "SELECT * FROM Products WHERE brandid = 2";
             $result = $conn->query($sql);
 
             // Check if there are any products
@@ -186,7 +186,7 @@
             // Include your PHP connection file here
             include 'connection.php';
             // Fetch products with brand "MANGO" from the database
-            $sql = "SELECT * FROM Products WHERE brand = 'Puma'";
+            $sql = "SELECT * FROM Products WHERE brandid = 1";
             $result = $conn->query($sql);
 
             // Check if there are any products
