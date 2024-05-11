@@ -2,7 +2,7 @@
 // Start the session
 session_start();
 
-// Include your PHP connection file here
+// Include your PHP connection file and functions here
 include 'connection.php';
 include 'phpFunctions.php';
 
@@ -15,20 +15,15 @@ if ($userId) {
     $cartItems = getCartItems($conn, $userId);
 }
 
-// Group cart items by product ID and calculate quantity
-$groupedCartItems = [];
-foreach ($cartItems as $cartItem) {
-    $productId = $cartItem['productId'];
-    if (!isset($groupedCartItems[$productId])) {
-        $groupedCartItems[$productId] = $cartItem;
-        $groupedCartItems[$productId]['quantity'] = 1;
-    } else {
-        $groupedCartItems[$productId]['quantity']++;
-    }
-}
-
 // Calculate the total price of cart items
 $totalPrice = calculateTotalPrice($cartItems);
+
+// Check if the "Remove & Add to Products" button is clicked
+if (isset($_POST['productId'])) {
+    $productId = $_POST['productId'];
+    removeFromCartAndAddToProducts($conn, $productId, $userId);
+    exit; // Stop further execution
+}
 ?>
 
 <!DOCTYPE html>
@@ -67,21 +62,23 @@ $totalPrice = calculateTotalPrice($cartItems);
         <table>
             <thead>
                 <tr>
-                    <th>Remove</th>
-                    <th>Image</th>
                     <th>Product</th>
                     <th>Quantity</th>
                     <th>Price</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($groupedCartItems as $cartItem): ?>
+                <?php foreach ($cartItems as $cartItem): ?>
                     <tr class="cart-item">
-                        <td><a href="#"><i class="fas fa-times-circle"></i></a></td>
-                        <td><img src="<?php echo $cartItem['image']; ?>" alt="<?php echo $cartItem['productName']; ?>"></td>
                         <td><?php echo $cartItem['productName']; ?></td>
                         <td><?php echo $cartItem['quantity']; ?></td>
                         <td>$<?php echo $cartItem['price']; ?></td>
+                        <td>
+                            <form method="post">
+                        <button type="submit">Remove & Add to Products</button>
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

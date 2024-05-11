@@ -17,9 +17,9 @@ if (isset($_POST['add'])) {
     $pdescription = $_POST['description'];
     $price = $_POST['price'];
     $pquantity = $_POST['quantity'];
-    $pdepartment = $_POST['brands']; 
+    $pdepartment = $_POST['brand']; 
     // Retrieve departmentId from the database based on departmentName
-    $departmentId = getDepartmentId($conn, $pdepartment); // Assuming $conn is the database connection
+    $departmentId = getbrandId($conn, $pdepartment); // Assuming $conn is the database connection
 
     $targetDir = "style/images/products/";
     $targetFile = $targetDir . basename($_FILES["photo"]["name"]);
