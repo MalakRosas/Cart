@@ -274,7 +274,6 @@ function getProductById($conn, $productId) {
 // Function to fetch cart items for a specific user
 function getCartItems($conn, $userId) {
     $cartItems = array();
-
     // Fetch cart items for the given user ID from the database
     $sql = "SELECT Products.productId, Products.productName, Products.price, Cart.quantity 
             FROM Cart 
