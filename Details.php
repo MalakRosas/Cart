@@ -5,14 +5,6 @@ session_start();
 include 'connection.php';
 include 'phpFunctions.php';
 
-// Check if the user is logged in
-if (!isset($_SESSION['userId'])) {
-    // If the user is not logged in, set an error message and redirect to the sign-in page
-    $_SESSION['errorMessage'] = "You need to sign in to add items to your cart.";
-    header("Location: signin.html");
-    exit();
-}
-
 // Check if the add to cart button is clicked
 if (isset($_POST['add_to_cart'])) {
     // Process the form submission
@@ -26,23 +18,14 @@ if (isset($_POST['add_to_cart'])) {
         $userId = $_SESSION['userId'];
         addToCartAndUpdateQuantity($userId, $productId, $quantity, $product['price'], $conn);
     } else {
-        // If the product quantity is zero or the product doesn't exist, set an error message and redirect back to the product page
+        // If the product quantity is zero or the product doesn't exist, set an error message
         $_SESSION['errorMessage'] = "This product is out of stock.";
-        header("Location: details.php?productId=" . $productId);
+        header("Location: product.php?productId=" . $productId);
         exit();
     }
 }
 
-// Check if the "Remove & Add to Products" button is clicked
-if (isset($_POST['removeFromCart'])) {
-    $productId = $_POST['productId'];
-    removeFromCartAndAddToProducts($conn, $productId, $userId);
-    // Redirect back to the cart page after removing the item
-    header("Location: cart.php");
-    exit; // Stop further execution
-}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -141,7 +124,7 @@ if (isset($_POST['removeFromCart'])) {
                 <h4><?php echo $productName; ?></h4>
                 <h4><?php echo $description; ?></h4>
                 <h1><?php echo $price; ?> L.E</h1>
-                <form action="" method="POST">
+                <form action="" method="POST" onsubmit="return checkStock()">
                     <input type="hidden" name="productId" value="<?php echo $productId; ?>">
                     <input type="number" name="quantity" value="1">
                     <button type="submit" name="add_to_cart" class="normal">Add to Cart</button>
@@ -150,11 +133,6 @@ if (isset($_POST['removeFromCart'])) {
                 <span>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae gravida nibh, eu scelerisque ex. Aliquam cursus nunc vel nunc consequat fringilla. Duis feugiat rutrum pharetra. Suspendisse potenti. Nam dictum posuere arcu, et finibus sem ullamcorper id. Pellentesque aliquam ornare interdum. Aenean molestie massa nulla, quis blandit libero fringilla id. Nunc gravida, nulla eget pellentesque aliquam, turpis augue sodales felis, eget feugiat augue nibh at velit. Nunc bibendum augue ac mauris porta scelerisque.
                 </span>
-                <!-- Add the form for removing from cart -->
-                <form method="post">
-                    <input type="hidden" name="productId" value="<?php echo $productId; ?>">
-                    <button type="submit" name="removeFromCart">Remove & Add to Products</button>
-                </form>
             <?php
             } else {
                 echo "<p>Product not found.</p>";
@@ -179,6 +157,28 @@ if (isset($_POST['removeFromCart'])) {
     <script>
         function closeErrorMessage() {
             document.getElementById('error-message').style.display = 'none';
+        }
+
+        function checkStock() {
+            // Assuming you have an input field named "quantity"
+            var quantity = document.getElementsByName("quantity")[0].value;
+            
+            // Assuming you have a JavaScript variable named "productQuantity" that holds the available quantity of the product
+            var productQuantity = <?php echo $product['quantity']; ?>;
+            
+            // Check if the quantity entered by the user is greater than zero
+            if (quantity <= 0) {
+                alert("Please enter a quantity greater than zero.");
+                return false;
+            }
+
+            // Check if the entered quantity exceeds the available stock
+            if (quantity > productQuantity) {
+                alert("This product is out of stock.");
+                return false;
+            }
+
+            return true;
         }
     </script>
 </body>
