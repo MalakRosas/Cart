@@ -6,15 +6,15 @@
     --color-danger: #ff7782;
     --color-success: #41fib6;
     --color-warning: #ffbb55;
-    --color-white: #fff;
+    --color-white: #202528;
     --color-info-dark: #7d8da1;
     --color-info-light: #dceleb;
-    --color-dark: #363949;
-    --color-light: rgba(132, 139, 200, 0.18);
-    --color-primary-variant: #me88;
-    /* Corrected typo assuming it's #me88 */
-    --color-dark-variant: #677483;
-    --color-background: #ffffff;
+    --color-dark: #edeffd;
+    --color-light: rgba(0, 0, 0, 0.4);
+    --color-primary-variant:var(--color-danger);
+    /* Corrected typo assuming it's#me88 */
+    --color-dark-variant: #a3bdcc;
+    --color-background: #181a1e;
     --card-border-radius: 2rem;
     --border-radius-1: 0.4rem;
     --border-radius-2: 0.8rem;
@@ -22,8 +22,16 @@
     --card-padding: 1.8rem;
     --padding-1: 1.2rem;
     --box-shadow: 0 2rem 3rem var(--color-light);
-}
+ }
 
+
+.dark-theme-variables {
+--color-background: #181ale;
+--color-white: #202528;
+--color-dark: #edeffd;
+--color-dark-variant: #a3bdcc;
+--color-light: rgba(0, 0, 0, 0.4);
+--box-shadow: o 2rem 3rem var(--color-light); }
 * {
     margin: 0;
     padding: 0;
@@ -131,7 +139,6 @@ aside {
 }
 
 aside .top {
-    background: rgb(255, 255, 255);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -153,7 +160,6 @@ aside .close {
 }
 
 aside .sidebar {
-    background: white;
     display: flex;
     flex-direction: column;
     height: 86vh;
