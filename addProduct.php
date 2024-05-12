@@ -85,7 +85,7 @@ if ($sellerResult) {
 </head>
 
 <body>
-    <div class="container">
+<div class="container">
         <aside>
             <div class="top">
                 <div class="logo">
@@ -99,11 +99,11 @@ if ($sellerResult) {
             <div class="sidebar">
                 <a href="adminDashboard" class="active">
                     <span class="material-icons-sharp">grid_view</span>
-                    <h3>Seller Dashboard</h3>
+                    <h3>Dashboard</h3>
                 </a>
                 <a href="#">
                     <span class="material-icons-sharp">grid_view</span>
-                    <h3>Log out </h3>
+                    <h3>Lorem_ipsum 5</h3>
                 </a>
             </div>
         </aside>
@@ -112,6 +112,9 @@ if ($sellerResult) {
             <div class="date">
                 <input type="date">
             </div>
+            <div class="insights">
+            <div class="recent-order">
+            
 <form id="form" method="post" class="form" enctype="multipart/form-data">        <p>Product name:</p>
         <input class="value" type="text" name="productName" placeholder="Product name" required><br>
 
@@ -148,6 +151,8 @@ if ($sellerResult) {
         <button id="myButton" name="add" class="button">Add product</button>
     </form>
         </main>
+        </div>
+        </div>
 </body>
 
 </html>

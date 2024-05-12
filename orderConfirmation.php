@@ -97,7 +97,7 @@ $message = "Your order has been confirmed! Order ID: $orderId";
     </section>
 
     <section id="order-confirmation" class="section-p1">
-        <div>
+    <div class="message-container">
             <p><?php echo $message; ?></p>
             <p>Your order details have been successfully processed. You will receive an email confirmation shortly.</p>
         </div>
@@ -105,5 +105,45 @@ $message = "Your order has been confirmed! Order ID: $orderId";
 
     <script src="style/nindex.js"></script>
 </body>
+<footer class="section-p1">
+    <div class="col">
+    <img src="style/images/index/logo.png" class="logo" class="logo" alt="">
+    <h4>Contact</h4>
+    <p><strong>Address: </strong> 562 Wellington Road, Street 32, San Francisco</
+</p>
+    <p><strong>Phone:</strong> +01 2222 365/(+91) 01 2345 6789</p>
+    <p><strong>Hours:</strong> 10:00 - 18:00, Mon Sat</p>
+    <div class="follow">
+    <h4>Follow us</h4>
+    <div class="icon">
+    <i class="fab fa-facebook-f"></i>
+    <i class="fab fa-twitter"></i>
+    <i class="fab fa-instagram"></i>
+    <i class="fab fa-pinterest-p"></i>
+    <i class="fab fa-youtube"></i>
+    </div>
+    </div>
+    </div>
+            <div class="col">
+        <h4>My Account</h4>
+        <a href="signin.html">Sign In</a>
+        <a href="cart.php">View Cart</a>
+        <a href="shop.php">shopping</a>
+        <a href="about.php">About</a>
+        </div>
+        <div class="col install">
+        <h4>Install App</h4>
+        <p>From App Store or Google Play</p>
+        <div class="row">
+        <img src="style/images/index/pay/app.jpg" alt="">
+        <img src="style/images/index/pay/play.jpg" alt="">
+        </div>
+        <p>Secured Payment Gateways </p>
+        <img src="style\images\index\pay\pay.png" alt="">
+        </div>
+        <div class="copyright">
+        <p>@Perfect web programmers team ! </p>
+        </div>
+    </footer>
 
 </html>
