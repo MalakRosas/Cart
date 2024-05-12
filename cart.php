@@ -83,11 +83,10 @@ if (isset($_POST['productId'])) {
             </tbody>
         </table>
         <!-- Button to confirm order -->
-        <form action="pay.html" method="post">
-    <input type="hidden" name="totalAmount" value="<?php echo $totalPrice; ?>">
-    <button type="submit" name="confirmOrder">Confirm Order</button>
-</form>
-
+        <form action="orderConfirmation.php" method="post">
+            <input type="hidden" name="totalAmount" value="<?php echo $totalPrice; ?>">
+            <button type="submit" name="confirmOrder">Confirm Order</button>
+        </form>
     </section>
 
     <section id="cart-add" class="section-p1">
