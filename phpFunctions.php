@@ -125,23 +125,29 @@ function isValidYear($year) {
 function isValidCVV($cvv) {
     return (is_numeric($cvv) && strlen($cvv) === 3);
 }
-
 function createPaymentCard($conn, $userId, $cardNumber, $expYear, $expMonth, $cvv) {
     $billingAddress = "N/A"; // Assuming billing address is not provided in the form
+    
+    // SQL query to insert payment card details without specifying the cardId column
     $sql = "INSERT INTO PaymentCards (userId, cardNumber, expiryYear, expiryMonth, CVV, billingAddress) 
             VALUES (?, ?, ?, ?, ?, ?)";
+    
+    // Initialize the prepared statement
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        return false;
+        return false; // Return false if the SQL statement preparation fails
     }
-
+    // Bind parameters to the prepared statement
     mysqli_stmt_bind_param($stmt, "isssss", $userId, $cardNumber, $expYear, $expMonth, $cvv, $billingAddress);
+    // Execute the prepared statement
     mysqli_stmt_execute($stmt);
-    $cardId = mysqli_insert_id($conn);
+    // Close the statement
     mysqli_stmt_close($stmt);
 
-    return $cardId;
+    // Return true to indicate successful creation of the payment card
+    return true;
 }
+
 
 function createPayment($conn, $userId, $cardId, $totalAmount) {
     $sql = "INSERT INTO Payments (userId, cardId, total_amount) 
@@ -274,6 +280,7 @@ function getProductById($conn, $productId) {
 // Function to fetch cart items for a specific user
 function getCartItems($conn, $userId) {
     $cartItems = array();
+
     // Fetch cart items for the given user ID from the database
     $sql = "SELECT Products.productId, Products.productName, Products.price, Cart.quantity 
             FROM Cart 
@@ -346,6 +353,36 @@ function getProductDetails($conn, $productId) {
     $productDetails = $result->fetch_assoc();
     $stmt->close();
     return $productDetails;
+}
+function createOrder($conn, $userId, $totalPrice, $shippingAddress, $cardId) {
+    $sql = "INSERT INTO Orders (userId, totalPrice, shippingAddress, cardId) 
+            VALUES (?, ?, ?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        return false;
+    }
+
+    mysqli_stmt_bind_param($stmt, "idsi", $userId, $totalPrice, $shippingAddress, $cardId);
+    mysqli_stmt_execute($stmt);
+    $orderId = mysqli_insert_id($conn);
+    mysqli_stmt_close($stmt);
+
+    return $orderId;
+}
+
+function createOrderDetail($conn, $orderId, $productId, $quantity, $unitPrice) {
+    $sql = "INSERT INTO OrderDetails (orderId, productId, quantity, unitPrice) 
+            VALUES (?, ?, ?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        return false;
+    }
+
+    mysqli_stmt_bind_param($stmt, "iiid", $orderId, $productId, $quantity, $unitPrice);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    return true;
 }
 
 ?>
