@@ -107,11 +107,90 @@ body {
   content: "";
   width: 30%;
   height: 2px;
-  background: #faaed2;
+  background: #eeff00;
   /* Changed underline color to light pink */
   position: absolute;
   bottom: -4px;
   left: 20px;
+}
+#navbar li a.active:after,
+#navbar li a:hover::after {
+    content: "";
+    width: 30%;
+    height: 2px;
+    background: #f5faae; 
+    /* Light pink underline */
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+}
+
+/* Page Header */
+#page-header {
+    background-image: url("images/index/banner/b1.jpg");
+    height: 40vh;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 14px;
+}
+
+#page-header h2,
+#page-header p{
+    color: #f0f0f0; 
+    /* Light gray text */
+}
+
+/* Our Team Section */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.column {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 8px;
+}
+
+.container {
+    padding: 0 16px;
+}
+
+.title {
+    color: grey;
+}
+
+.button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+.button:hover {
+    background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+    .column {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }
 
 #hero {
@@ -148,6 +227,51 @@ body {
 }
 
 #hero button {
+  background-image: url(images/index/button.png);
+  background-color: transparent;
+  color: #292929;
+  /* Changed button text color to light gray */
+  border: 0;
+  padding: 14px 80px 14px 65px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+}
+#hero-2 {
+  background-image: url(images/index/hero5.png);
+  height: 90vh;
+  width: 100%;
+  background-size: cover;
+  background-position: top 25% right 0;
+  padding: 0 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#hero-2 h1 {
+  color: #ffffff;
+  /* Changed color to light gray */
+}
+
+#hero-2 h2 {
+  color: #ffffff;
+  /* Changed color to light gray */
+}
+
+#hero-2 h4 {
+  color: #ffffff;
+  /* Changed color to light gray */
+}
+
+#hero-2 p {
+  color: #ffffff;
+  /* Changed color to light gray */
+}
+
+#hero-2 button {
   background-image: url(images/index/button.png);
   background-color: transparent;
   color: #292929;
@@ -280,14 +404,35 @@ body {
 }
 
 #banner h4 {
-  color: #faaed2;
+  color: #ffffff;
   /* Changed text color to light pink */
 }
 
 #banner h2 {
-  color: #faaed2;
+  color: #ffffff;
   /* Changed text color to light pink */
 }
+
+#banner-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center; /* Align text to the right */
+  background-image: url("images/index/banner/bb2.png");
+  width: 100%;
+  height: 40vh;
+}
+
+#banner h4 {
+  color: #ffffff;
+  /* Changed text color to light pink */
+}
+
+#banner-2 h2 {
+  color: #ffffff;
+  /* Changed text color to light pink */
+}
+
 
 #page-header {
   background-image: url("images/index/banner/b1.jpg");
@@ -313,7 +458,7 @@ body {
 
 #pagination a {
   text-decoration: none;
-  background-color: #faaed2;
+  background-color: #eeff00;
   /* Changed background color to light pink */
   padding: 15px 20px;
   border-radius: 4px;
@@ -340,6 +485,23 @@ body {
 .small-img-group {
   display: flex;
   justify-content: space-between;
+}
+#completeOrderBtn {
+    background-color: #9b0101;
+    color: white; /* Text color */
+    padding: 1rem 2rem; /* Padding */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 500px;
+    margin-right: 500px;
+    border:none; /* Remove border */
+    border-radius: 3.5rem; /* Rounded corners */
+    cursor: pointer; /* Show pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+#completeOrderBtn:hover {
+    background-color: #f1ed00;
 }
 
 .small-img-col {
@@ -394,7 +556,7 @@ body {
 }
 
 #prodetails .single-pro-details button {
-  background-color: #faaed2;
+  background-color: #eeff00;
   /* Light pink background */
   color: #fff;
   /* White text color */
@@ -413,7 +575,7 @@ body {
 }
 
 #prodetails .single-pro-details button:hover {
-  background-color: #f190ac;
+  background-color: #eeff00;
   /* Light pink background on hover */
 
 
@@ -443,7 +605,144 @@ body {
 #prodetails .single-pro-details input[type="number"]:focus {
   outline: none;
   /* Remove outline on focus */
-  border-color: #faaed2;
+  border-color: #eeff00;
   /* Change border color on focus */
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+thead {
+  background-color: #131313; /* Dark gray */
+  color: #fff; /* White */
+}
+
+tbody {
+  background-color: #202020; /* Slightly lighter gray */
+  color: #fff; /* White */
+}
+
+tr {
+  border-bottom: 1px solid #2b2b2b; /* Light gray */
+}
+
+td, th {
+  padding: 10px;
+  text-align: left;
+}
+
+td {
+  vertical-align: middle;
+}
+
+/* Styling for the remove button */
+button[type="submit"] {
+  background-color: transparent;
+  border: none;
+  color: #fff; /* White */
+  cursor: pointer;
+}
+#cart-add {
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+/* Style for the "Confirm Order" button */
+.confirm-order-form {
+  flex: 1;
+  margin-right: 20px; /* Adjust as needed */
+}
+
+.confirm-order-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #272727;
+  color: rgb(61, 61, 61);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.confirm-order-btn:hover {
+  background-color: #ffae00;
+}
+#order-confirmation {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#order-confirmation p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+#order-confirmation .message-container {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+.star-icon {
+  color: yellow; /* Change color to yellow */
+}
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  }
+  footer .col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  }
+  footer .logo {
+    margin-bottom: 30px;
+  }
+  footer h4 {
+    font-size:14;
+    padding-bottom: 20p;
+  }
+  footer p {
+    font-size: 13px;
+    margin: 0 0 8px 0;
+  }
+footer a {
+  font-size: 13px;
+  text-decoration: none;
+  color : #ffffff ; 
+  margin-bottom: 10px;
+}
+footer .follow {
+  margin-top: 20px;
+}
+footer .follow {
+  margin-top: 20px;
+}
+footer .follow i {
+  color: #465b52;
+  padding-right: 4px;
+  cursor: pointer;
+}
+footer .install .row img {
+  margin: 10px 0 15px 0 ;
+  padding: 10px;
+}
+footer  .install p {
+  padding: 5px;
+}
+
+footer .follow i:hover 
+footer a:hover {
+  color : yellow ;
+}
+footer .copyright {
+  text-align: center;
+  width: 100%;
+}
