@@ -53,7 +53,7 @@ $result = $conn->query($sql);
                 </a>
                 <a href="#">
                     <span class="material-icons-sharp">grid_view</span>
-                    <h3>Lorem_ipsum 5</h3>
+                    <h3>Log out</h3>
                 </a>
             </div>
         </aside>
@@ -66,7 +66,7 @@ $result = $conn->query($sql);
     <section class="ProductNav">
         <div class="Ab-cust">
             <div class="recent-order">
-                <h1>All Products</h1>
+                <h2>Products : </h2>
                 <table id="productTable">
                     <thead>
                         <tr>
@@ -81,34 +81,79 @@ $result = $conn->query($sql);
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                        ?>
-                                <tr>
-                                    <td><?php echo $row['productId']; ?></td>
-                                    <td><?php echo $row['productName']; ?></td>
-                                    <td><?php echo $row['description']; ?></td>
-                                    <td><?php echo $row['price']; ?></td>
-                                    <td><?php echo $row['quantity']; ?></td>
-                                    <td><?php echo $row['brandName']; ?></td>
-                                    <td><?php echo $row['sellerName']; ?></td>
-                                    <td><img src="<?php echo $row['image']; ?>" alt="Product Image" width="100"></td>
-                                </tr>
-                        <?php
-                            }
-                        } else {
-                        ?>
-                            <tr>
-                                <td colspan="8">No products available</td>
-                            </tr>
-                        <?php
-                        }
-                        ?>
+                    <?php
+// Include database connection
+require_once 'connection.php';
+
+// Fetch one product from the database
+$sql = "SELECT Products.productId, Products.productName, Products.description, Products.price, Products.quantity, Products.image, Brands.brandName, Users.username AS sellerName
+        FROM Products 
+        INNER JOIN Brands ON Products.brandId = Brands.brandId
+        INNER JOIN Users ON Products.sellerId = Users.userId"; // Limiting to one row
+$result = $conn->query($sql);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- head section -->
+</head>
+<body>
+    <!-- body content -->
+    <?php
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+    ?>
+            <tr>
+                <td><?php echo $row['productId']; ?></td>
+                <td><?php echo $row['productName']; ?></td>
+                <td><?php echo $row['description']; ?></td>
+                <td><?php echo $row['price']; ?></td>
+                <td><?php echo $row['quantity']; ?></td>
+                <td><?php echo $row['brandName']; ?></td>
+                <td><?php echo $row['sellerName']; ?></td>
+                <td><img src="<?php echo $row['image']; ?>" alt="Product Image" width="100"></td>
+            </tr>
+    <?php
+        }
+    } else {
+    ?>
+        <tr>
+            <td colspan="8">No products available</td>
+        </tr>
+    <?php
+    }
+    ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </section>
+    </section>
+                    </main>
+                            <!-- Right sidebar -->
+        <div class="right">
+            <!-- Right sidebar content -->
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp">light_mode</span>
+                    <span class="material-icons-sharp active">dark_mode</span>
+
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Admin</b></p>
+                        <small class="text-muted">Hello world</small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="style/icon.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

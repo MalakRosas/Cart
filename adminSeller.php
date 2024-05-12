@@ -45,6 +45,7 @@ $sql = "SELECT Users.userId, Users.username, Users.email FROM Users WHERE Users.
 $result = $conn->query($sql);
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,7 +103,7 @@ $result = $conn->query($sql);
     <section class="SellerNav">
         <div class="Ab-cust">
             <div class="recent-order">
-                <h2>Sellers : </h2>
+                <h2>Sellers :</h2>
                 <table id="customerTable">
                     <thead>
                         <tr>
@@ -143,5 +144,31 @@ $result = $conn->query($sql);
             </div>
         </div>
     </section>
+    </section>
+                    </main>
+                            <!-- Right sidebar -->
+        <div class="right">
+            <!-- Right sidebar content -->
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp">light_mode</span>
+                    <span class="material-icons-sharp active">dark_mode</span>
+
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>Admin</b></p>
+                        <small class="text-muted">Hello world</small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="style/icon.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
