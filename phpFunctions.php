@@ -280,7 +280,6 @@ function getProductById($conn, $productId) {
 // Function to fetch cart items for a specific user
 function getCartItems($conn, $userId) {
     $cartItems = array();
-
     // Fetch cart items for the given user ID from the database
     $sql = "SELECT Products.productId, Products.productName, Products.price, Cart.quantity 
             FROM Cart 
@@ -379,6 +378,50 @@ function createOrderDetail($conn, $orderId, $productId, $quantity, $unitPrice) {
     }
 
     mysqli_stmt_bind_param($stmt, "iiid", $orderId, $productId, $quantity, $unitPrice);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    return true;
+}
+
+
+function createOrder($conn, $orderDetails) {
+    $sql = "INSERT INTO Orders (userId, totalPrice, status) VALUES (?, ?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        return false;
+    }
+
+    mysqli_stmt_bind_param($stmt, "ids", $orderDetails['userId'], $orderDetails['totalPrice'], $orderDetails['status']);
+    mysqli_stmt_execute($stmt);
+    $orderId = mysqli_insert_id($conn);
+    mysqli_stmt_close($stmt);
+
+    return $orderId;
+}
+
+function createOrderItem($conn, $orderItem) {
+    $sql = "INSERT INTO OrderDetails (orderId, productId, quantity, unitPrice) VALUES (?, ?, ?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        return false;
+    }
+
+    mysqli_stmt_bind_param($stmt, "iiid", $orderItem['orderId'], $orderItem['productId'], $orderItem['quantity'], $orderItem['unitPrice']);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    return true;
+}
+
+function clearCart($conn, $userId) {
+    $sql = "DELETE FROM Cart WHERE userId = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        return false;
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $userId);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 

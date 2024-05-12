@@ -93,8 +93,25 @@ if (isset($_POST['add_to_cart'])) {
     </section>
     <section id="prodetails" class="section-p1">
         <div class="single-pro-image">
-            <img src="style/images/index/products/f1.jpg" width="100%" id="MainImg" alt="">
+            <?php
+            // Fetch product details based on productId
+            $productId = $_GET['productId']; // Assuming productId is passed through URL
+            $product = getProductById($conn, $productId);
+
+            if ($product) {
+                $productName = $product['productName'];
+                $description = $product['description'];
+                $price = $product['price'];
+                $image = $product['image'];
+            ?>
+                <img src="<?php echo $image; ?>" width="100%" id="MainImg" alt="">
+            <?php
+            } else {
+                echo "<p>Product not found.</p>";
+            }
+            ?>
             <div class="small-img-group">
+                <!-- Assuming you have multiple images for the product -->
                 <div class="small-img-col">
                     <img src="style/images/index/products/f1.jpg" width="100%" class="small-img" alt="">
                 </div>
@@ -112,14 +129,7 @@ if (isset($_POST['add_to_cart'])) {
 
         <div class="single-pro-details">
             <?php
-            // Fetch product details based on productId
-            $productId = $_GET['productId']; // Assuming productId is passed through URL
-            $product = getProductById($conn, $productId);
-
             if ($product) {
-                $productName = $product['productName'];
-                $description = $product['description'];
-                $price = $product['price'];
             ?>
                 <h4><?php echo $productName; ?></h4>
                 <h4><?php echo $description; ?></h4>
