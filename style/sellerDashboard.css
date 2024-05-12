@@ -2,7 +2,7 @@
 
 /* ROOT VARIABLES */
 :root {
-    --color-primary: #0077ff;
+    --color-primary: #9ea3a8;
     --color-danger: #45a5ff;
     --color-success: #41fib6;
     --color-warning: #ffbb55;
@@ -233,7 +233,6 @@ main .date input[type="date"] {
 }
 
 main .insights {
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.6rem;
 }

@@ -38,13 +38,12 @@ if (isset($_POST['productId'])) {
 
 <body>
     <section id="header">
-        <a href="#"><img src="style/images/index/logo.png" class="logo" alt=""></a>
+        <a href="index.php"><img src="style/images/index/logo.png" class="logo" alt=""></a>
         <div>
             <ul id="navbar">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="shop.php" >Shop</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="#">Contact</a></li>
                 <li><a href="cart.php"class="active">Cart</a></li>
                 <li><a href="signin.html"><i class="fas fa-sign-in-alt"></i></a></li>
             </ul>
@@ -52,7 +51,7 @@ if (isset($_POST['productId'])) {
     </section>
     <section id="page-header">
         <h1>CART</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+        <p>only one step to pay ! keep track !!</p>
     </section>
 
     <section id="cart" class="section-p1">
@@ -80,40 +79,82 @@ if (isset($_POST['productId'])) {
                         </td>
                     </tr>
                 <?php endforeach; ?>
+                
             </tbody>
         </table>
         <!-- Button to confirm order -->
-        <form action="orderConfirmation.php" method="post">
-            <input type="hidden" name="totalAmount" value="<?php echo $totalPrice; ?>">
-            <button type="submit" name="confirmOrder">Confirm Order</button>
-        </form>
     </section>
 
     <section id="cart-add" class="section-p1">
-        <div id="cupon">
-            <h3>Apply Coupon</h3>
-        </div>
-        <input type="text" placeholder="Enter your Coupon">
-        <button>Apply</button>
+    <div id="subtotal">
+        <h3>Cart Totals</h3>
+        <table>
+            <tr>
+                <td>Cart</td>
+                <td>$<?php echo $totalPrice; ?></td>
+            </tr>
+            <tr>
+                <td>Shipping</td>
+                <td>Free</td>
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td><strong>$<?php echo $totalPrice; ?></strong></td>
+            </tr>
+        </table>
+    </div>
+    <section id="banner-2" class="section-m1">
+        <h4>Attention!</h4>
+        <h2>Add your card to complete !</h2>
+        <button type="button" id="completeOrderBtn">Add card</button>
 
-        <div id="subtotal">
-            <h3>Cart Totals</h3>
-            <table>
-                <tr>
-                    <td>Cart</td>
-                    <td>$<?php echo $totalPrice; ?></td>
-                </tr>
-                <tr>
-                    <td>Shipping</td>
-                    <td>Free</td>
-                </tr>
-                <tr>
-                    <td><strong>Total</strong></td>
-                    <td><strong>$<?php echo $totalPrice; ?></strong></td>
-                </tr>
-            </table>
-        </div>
     </section>
+<section class="section-m1">
+    <form action="orderConfirmation.php" method="post" class="confirm-order-form">
+        <input type="hidden" name="totalAmount" value="<?php echo $totalPrice; ?>">
+        <button type="submit" name="confirmOrder" class="confirm-order-btn">Confirm Order</button>
+    </form>
+</section>
+<footer class="section-p1">
+    <div class="col">
+    <img src="style/images/index/logo.png" class="logo" class="logo" alt="">
+    <h4>Contact</h4>
+    <p><strong>Address: </strong> 562 Wellington Road, Street 32, San Francisco</
+</p>
+    <p><strong>Phone:</strong> +01 2222 365/(+91) 01 2345 6789</p>
+    <p><strong>Hours:</strong> 10:00 - 18:00, Mon Sat</p>
+    <div class="follow">
+    <h4>Follow us</h4>
+    <div class="icon">
+    <i class="fab fa-facebook-f"></i>
+    <i class="fab fa-twitter"></i>
+    <i class="fab fa-instagram"></i>
+    <i class="fab fa-pinterest-p"></i>
+    <i class="fab fa-youtube"></i>
+    </div>
+    </div>
+    </div>
+            <div class="col">
+        <h4>My Account</h4>
+        <a href="signin.html">Sign In</a>
+        <a href="cart.php">View Cart</a>
+        <a href="shop.php">shopping</a>
+        <a href="about.php">About</a>
+        </div>
+        <div class="col install">
+        <h4>Install App</h4>
+        <p>From App Store or Google Play</p>
+        <div class="row">
+        <img src="style/images/index/pay/app.jpg" alt="">
+        <img src="style/images/index/pay/play.jpg" alt="">
+        </div>
+        <p>Secured Payment Gateways </p>
+        <img src="style\images\index\pay\pay.png" alt="">
+        </div>
+        <div class="copyright">
+        <p>@Perfect web programmers team ! </p>
+        </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <script src="style/nindex.js"></script>

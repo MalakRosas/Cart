@@ -84,6 +84,7 @@ $result = $conn->query($sql);
                 </a>
                 <a href="adminSeller.php"class="active">
                     <span class="material-icons-sharp">grid_view</span>
+                    
                     <h3>Sellers</h3>
                 </a>
                 <a href="#">
@@ -101,7 +102,7 @@ $result = $conn->query($sql);
     <section class="SellerNav">
         <div class="Ab-cust">
             <div class="recent-order">
-                <h1>Sellers</h1>
+                <h2>Sellers : </h2>
                 <table id="customerTable">
                     <thead>
                         <tr>
@@ -123,7 +124,7 @@ $result = $conn->query($sql);
                                     <td>
                                         <form action="" method="post">
                                             <input type="hidden" name="seller_id" value="<?php echo $row['userId']; ?>">
-                                               <button type="submit" onclick="return confirm('Are you sure you want to delete this seller?')">Delete</button>
+                                               <button type="submit" class="delete-button" onclick="return confirm('Are you sure you want to delete this seller?')">Delete</button>
                                         </form>
                                     </td>
                                 </tr>

@@ -78,14 +78,12 @@ if (isset($_POST['add_to_cart'])) {
 
 <body>
     <section id="header">
-        <a href="#"><img src="style/images/index/logo.png" class="logo" alt=""></a>
+        <a href="index.php"><img src="style/images/index/logo.png" class="logo" alt=""></a>
         <div>
             <ul id="navbar">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="shop.php" class="active">Shop</a></li>
-                <li><a href="#">Blog</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="#">Contact</a></li>
                 <li><a href="cart.php">Cart</a></li>
                 <li><a href="signin.html"><i class="fas fa-sign-in-alt"></i></a></li>
             </ul>
@@ -191,6 +189,7 @@ if (isset($_POST['add_to_cart'])) {
             return true;
         }
     </script>
+
 </body>
 
 </html>
