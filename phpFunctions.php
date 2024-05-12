@@ -350,21 +350,32 @@ function getProductDetails($conn, $productId) {
 
 
 function createOrder($conn, $orderDetails) {
-    $sql = "INSERT INTO Orders (userId, totalPrice, status) VALUES (?, ?, ?)";
+    // Prepare the SQL query to insert order details
+    $sql = "INSERT INTO Orders (userId, totalPrice, status, shippingAddress) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         return false;
     }
 
-    mysqli_stmt_bind_param($stmt, "ids", $orderDetails['userId'], $orderDetails['totalPrice'], $orderDetails['status']);
-    mysqli_stmt_execute($stmt);
-    $orderId = mysqli_insert_id($conn);
-    mysqli_stmt_close($stmt);
 
-    return $orderId;
-}
-
-function createOrderItem($conn, $orderItem) {
+       // Bind parameters to the prepared statement
+       mysqli_stmt_bind_param($stmt, "idss", $orderDetails['userId'], $orderDetails['totalPrice'], $orderDetails['status'], $orderDetails['shippingAddress']);
+    
+       // Execute the prepared statement
+       mysqli_stmt_execute($stmt);
+       
+       // Get the inserted orderId
+       $orderId = mysqli_insert_id($conn);
+   
+       // Close the statement
+       mysqli_stmt_close($stmt);
+   
+       // Return the orderId
+       return $orderId;
+   }
+   
+   
+   function createOrderItem($conn, $orderItem) {
     $sql = "INSERT INTO OrderDetails (orderId, productId, quantity, unitPrice) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -375,7 +386,7 @@ function createOrderItem($conn, $orderItem) {
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
-    return true;
+   return true;
 }
 
 function clearCart($conn, $userId) {
