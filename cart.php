@@ -56,13 +56,14 @@ if (isset($_POST['productId'])) {
     </section>
 
     <section id="cart" class="section-p1">
+    <table width="100%">
         <table>
             <thead>
                 <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Action</th>
+                    <td>Product</td>
+                    <td>Quantity</td>
+                    <td>Price</td>
+                    <td>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -74,7 +75,7 @@ if (isset($_POST['productId'])) {
                         <td>
                             <form method="post">
                                 <input type="hidden" name="productId" value="<?php echo $cartItem['productId']; ?>">
-                                <button type="submit" name="removeFromCart">Remove & Add to Products</button>
+                                <button type="submit" name="removeFromCart"><i class="fas fa-times-circle"></i></button>
                             </form>
                         </td>
                     </tr>
@@ -82,11 +83,10 @@ if (isset($_POST['productId'])) {
             </tbody>
         </table>
         <!-- Button to confirm order -->
-        <form action="pay.html" method="post">
-    <input type="hidden" name="totalAmount" value="<?php echo $totalPrice; ?>">
-    <button type="submit" name="confirmOrder">Confirm Order</button>
-</form>
-
+        <form action="orderConfirmation.php" method="post">
+            <input type="hidden" name="totalAmount" value="<?php echo $totalPrice; ?>">
+            <button type="submit" name="confirmOrder">Confirm Order</button>
+        </form>
     </section>
 
     <section id="cart-add" class="section-p1">

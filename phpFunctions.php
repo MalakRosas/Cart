@@ -348,4 +348,64 @@ function getProductDetails($conn, $productId) {
     return $productDetails;
 }
 
+
+function createOrder($conn, $orderDetails) {
+    $sql = "INSERT INTO Orders (userId, totalPrice, status) VALUES (?, ?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        return false;
+    }
+
+    mysqli_stmt_bind_param($stmt, "ids", $orderDetails['userId'], $orderDetails['totalPrice'], $orderDetails['status']);
+    mysqli_stmt_execute($stmt);
+    $orderId = mysqli_insert_id($conn);
+    mysqli_stmt_close($stmt);
+
+    return $orderId;
+}
+
+function createOrderItem($conn, $orderItem) {
+    $sql = "INSERT INTO OrderDetails (orderId, productId, quantity, unitPrice) VALUES (?, ?, ?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        return false;
+    }
+
+    mysqli_stmt_bind_param($stmt, "iiid", $orderItem['orderId'], $orderItem['productId'], $orderItem['quantity'], $orderItem['unitPrice']);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    return true;
+}
+
+function clearCart($conn, $userId) {
+    $sql = "DELETE FROM Cart WHERE userId = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        return false;
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $userId);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    return true;
+}
+function getOrderForUser($conn, $userId) {
+    // Query to fetch order for the given user ID
+    $sql = "SELECT * FROM Orders WHERE userId = ? LIMIT 1";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        return null;
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $userId);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $order = mysqli_fetch_assoc($result);
+    mysqli_stmt_close($stmt);
+
+    return $order;
+}
+
 ?>
