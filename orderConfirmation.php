@@ -17,18 +17,35 @@ $totalPrice = $_SESSION['totalAmount'];
 // Get the user ID from the session
 $userId = $_SESSION['userId'] ?? null;
 
-// Insert order details into Orders table
-$orderDetails = [
-    'userId' => $userId,
-    'totalPrice' => $totalPrice,
-    'status' => 'pending' // Set default status as pending
-];
-$orderId = createOrder($conn, $orderDetails);
-
 // Fetch cart items for the user
 $cartItems = [];
 if ($userId) {
     $cartItems = getCartItems($conn, $userId);
+}
+
+// Check if cart is empty
+if (empty($cartItems)) {
+    // Display a JavaScript alert indicating that the cart is empty
+    echo "<script>alert('Your cart is empty. Please add items to your cart before proceeding.');";
+    // Redirect to cart.php after showing the alert
+    echo "window.location = 'cart.php';";
+    echo "</script>";
+}
+
+// Check if an order already exists for the user
+$existingOrder = getOrderForUser($conn, $userId);
+
+if ($existingOrder) {
+    // Use the existing order ID
+    $orderId = $existingOrder['orderId'];
+} else {
+    // Insert order details into Orders table
+    $orderDetails = [
+        'userId' => $userId,
+        'totalPrice' => $totalPrice,
+        'status' => 'pending' // Set default status as pending
+    ];
+    $orderId = createOrder($conn, $orderDetails);
 }
 
 // Insert order items into OrderDetails table

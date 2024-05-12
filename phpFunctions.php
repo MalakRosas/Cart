@@ -392,4 +392,22 @@ function clearCart($conn, $userId) {
     return true;
 }
 
+function getOrderForUser($conn, $userId) {
+    // Query to fetch order for the given user ID
+    $sql = "SELECT * FROM Orders WHERE userId = ? LIMIT 1";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        return null;
+    }
+
+    mysqli_stmt_bind_param($stmt, "i", $userId);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $order = mysqli_fetch_assoc($result);
+    mysqli_stmt_close($stmt);
+
+    return $order;
+}
+
+
 ?>
