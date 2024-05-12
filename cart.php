@@ -1,10 +1,8 @@
 <?php
-// Start the session
 session_start();
 
-// Include your PHP connection file and functions here
-include 'connection.php';
-include 'phpFunctions.php';
+require_once 'phpFunctions.php';
+require_once 'connection.php';
 
 // Get the user ID from the session
 $userId = $_SESSION['userId'] ?? null;
@@ -15,8 +13,8 @@ if ($userId) {
     $cartItems = getCartItems($conn, $userId);
 }
 
-// Calculate the total price of cart items
 $totalPrice = calculateTotalPrice($cartItems);
+$_SESSION['totalAmount'] = $totalPrice;
 
 // Check if the "Remove & Add to Products" button is clicked
 if (isset($_POST['productId'])) {
@@ -44,11 +42,10 @@ if (isset($_POST['productId'])) {
         <div>
             <ul id="navbar">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="shop.php" class="active">Shop</a></li>
-                <li><a href="#">Blog</a></li>
+                <li><a href="shop.php" >Shop</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="cart.php">Cart</a></li>
+                <li><a href="cart.php"class="active">Cart</a></li>
                 <li><a href="signin.html"><i class="fas fa-sign-in-alt"></i></a></li>
             </ul>
         </div>
@@ -76,13 +73,20 @@ if (isset($_POST['productId'])) {
                         <td>$<?php echo $cartItem['price']; ?></td>
                         <td>
                             <form method="post">
-                        <button type="submit">Remove & Add to Products</button>
+                                <input type="hidden" name="productId" value="<?php echo $cartItem['productId']; ?>">
+                                <button type="submit" name="removeFromCart">Remove & Add to Products</button>
                             </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <!-- Button to confirm order -->
+        <form action="pay.html" method="post">
+    <input type="hidden" name="totalAmount" value="<?php echo $totalPrice; ?>">
+    <button type="submit" name="confirmOrder">Confirm Order</button>
+</form>
+
     </section>
 
     <section id="cart-add" class="section-p1">

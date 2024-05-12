@@ -7,23 +7,21 @@ include 'phpFunctions.php';
 
 // Check if the add to cart button is clicked
 if (isset($_POST['add_to_cart'])) {
-    // Check if the user is logged in
-    if (!isset($_SESSION['userId'])) {
-        // If user is not logged in, redirect to sign in page
-        header("Location: signin.html");
-        exit();
-    }
-
     // Process the form submission
     $productId = $_POST['productId'];
     $quantity = $_POST['quantity'];
     $product = getProductById($conn, $productId);
-    // Assuming $clientId is available, fetch it from session or database as needed
-    // Assuming $userId is available, fetch it from session or database as needed
-    $userId = $_SESSION['userId'];
 
-    if ($product) {
+    // Check if the product exists and its quantity is greater than zero
+    if ($product && $product['quantity'] > 0) {
+        // Assuming $userId is available, fetch it from session or database as needed
+        $userId = $_SESSION['userId'];
         addToCartAndUpdateQuantity($userId, $productId, $quantity, $product['price'], $conn);
+    } else {
+        // If the product quantity is zero or the product doesn't exist, set an error message
+        $_SESSION['errorMessage'] = "This product is out of stock.";
+        header("Location: product.php?productId=" . $productId);
+        exit();
     }
 }
 
@@ -95,8 +93,25 @@ if (isset($_POST['add_to_cart'])) {
     </section>
     <section id="prodetails" class="section-p1">
         <div class="single-pro-image">
-            <img src="style/images/index/products/f1.jpg" width="100%" id="MainImg" alt="">
+            <?php
+            // Fetch product details based on productId
+            $productId = $_GET['productId']; // Assuming productId is passed through URL
+            $product = getProductById($conn, $productId);
+
+            if ($product) {
+                $productName = $product['productName'];
+                $description = $product['description'];
+                $price = $product['price'];
+                $image = $product['image'];
+            ?>
+                <img src="<?php echo $image; ?>" width="100%" id="MainImg" alt="">
+            <?php
+            } else {
+                echo "<p>Product not found.</p>";
+            }
+            ?>
             <div class="small-img-group">
+                <!-- Assuming you have multiple images for the product -->
                 <div class="small-img-col">
                     <img src="style/images/index/products/f1.jpg" width="100%" class="small-img" alt="">
                 </div>
@@ -114,19 +129,12 @@ if (isset($_POST['add_to_cart'])) {
 
         <div class="single-pro-details">
             <?php
-            // Fetch product details based on productId
-            $productId = $_GET['productId']; // Assuming productId is passed through URL
-            $product = getProductById($conn, $productId);
-
             if ($product) {
-                $productName = $product['productName'];
-                $description = $product['description'];
-                $price = $product['price'];
             ?>
                 <h4><?php echo $productName; ?></h4>
                 <h4><?php echo $description; ?></h4>
                 <h1><?php echo $price; ?> L.E</h1>
-                <form action="" method="POST">
+                <form action="" method="POST" onsubmit="return checkStock()">
                     <input type="hidden" name="productId" value="<?php echo $productId; ?>">
                     <input type="number" name="quantity" value="1">
                     <button type="submit" name="add_to_cart" class="normal">Add to Cart</button>
@@ -142,15 +150,47 @@ if (isset($_POST['add_to_cart'])) {
             ?>
         </div>
 
-        <div id="error-message">
-            <p>You need to log in to add items to your cart.</p>
-            <div class="error-buttons">
-                <button onclick="closeErrorMessage()">Cancel</button>
-                <a href="signin.html"><button>Sign In</button></a>
+        <?php if (isset($_SESSION['errorMessage'])): ?>
+            <div id="error-message">
+                <p><?php echo $_SESSION['errorMessage']; ?></p>
+                <div class="error-buttons">
+                    <button onclick="closeErrorMessage()">Cancel</button>
+                    <a href="signin.html"><button>Sign In</button></a>
+                </div>
             </div>
-        </div>
+        <?php
+            unset($_SESSION['errorMessage']); // Clear the error message after displaying it
+        endif;
+        ?>
     </section>
+
+    <script>
+        function closeErrorMessage() {
+            document.getElementById('error-message').style.display = 'none';
+        }
+
+        function checkStock() {
+            // Assuming you have an input field named "quantity"
+            var quantity = document.getElementsByName("quantity")[0].value;
+            
+            // Assuming you have a JavaScript variable named "productQuantity" that holds the available quantity of the product
+            var productQuantity = <?php echo $product['quantity']; ?>;
+            
+            // Check if the quantity entered by the user is greater than zero
+            if (quantity <= 0) {
+                alert("Please enter a quantity greater than zero.");
+                return false;
+            }
+
+            // Check if the entered quantity exceeds the available stock
+            if (quantity > productQuantity) {
+                alert("This product is out of stock.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </body>
 
 </html>
-

@@ -159,7 +159,7 @@ function createPayment($conn, $userId, $cardId, $totalAmount) {
 }
 
 function CheckMultipleTransactions($conn, $cardNumber, $timeFrame) {
-    $sql = "SELECT COUNT(*) AS transactionCount FROM Payments WHERE cardNumber = ? AND transaction_date >= NOW() - INTERVAL ? HOUR";
+    $sql = "SELECT COUNT(*) AS transactionCount FROM Payments WHERE cardId = ? AND transaction_date >= NOW() - INTERVAL ? HOUR";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         return false;
@@ -227,17 +227,29 @@ function addProduct($conn, $sellerId, $productName, $description, $price, $quant
 }
 
 function addToCartAndUpdateQuantity($userId, $productId, $quantity, $unitPrice, $conn) {
-    // Insert into Cart table
-    $stmt = $conn->prepare("INSERT INTO Cart (userId, productId, quantity, unitPrice) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("iiid", $userId, $productId, $quantity, $unitPrice);
+    // Check if the product already exists in the cart for the user
+    $stmt = $conn->prepare("SELECT * FROM Cart WHERE userId = ? AND productId = ?");
+    $stmt->bind_param("ii", $userId, $productId);
     $stmt->execute();
+    $result = $stmt->get_result();
 
-    // Update product quantity
+    if ($result->num_rows > 0) {
+        // Product already exists in the cart, update the quantity
+        $stmt = $conn->prepare("UPDATE Cart SET quantity = quantity + ? WHERE userId = ? AND productId = ?");
+        $stmt->bind_param("iii", $quantity, $userId, $productId);
+        $stmt->execute();
+    } else {
+        // Product doesn't exist in the cart, insert a new row
+        $stmt = $conn->prepare("INSERT INTO Cart (userId, productId, quantity, unitPrice) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("iiid", $userId, $productId, $quantity, $unitPrice);
+        $stmt->execute();
+    }
+
+    // Update product quantity in the Products table
     $stmt = $conn->prepare("UPDATE Products SET quantity = quantity - ? WHERE productId = ?");
     $stmt->bind_param("ii", $quantity, $productId);
     $stmt->execute();
 }
-
 
 function getProductById($conn, $productId) {
     $sql = "SELECT * FROM Products WHERE productId = ?";
@@ -262,9 +274,8 @@ function getProductById($conn, $productId) {
 // Function to fetch cart items for a specific user
 function getCartItems($conn, $userId) {
     $cartItems = array();
-
     // Fetch cart items for the given user ID from the database
-    $sql = "SELECT Products.productName, Products.price, Cart.quantity 
+    $sql = "SELECT Products.productId, Products.productName, Products.price, Cart.quantity 
             FROM Cart 
             INNER JOIN Products ON Cart.productId = Products.productId 
             WHERE Cart.userId = ?";
@@ -281,6 +292,7 @@ function getCartItems($conn, $userId) {
 
     return $cartItems;
 }
+
 
 
 // Function to calculate the total price of items in the cart
@@ -300,24 +312,29 @@ function calculateTotalPrice($cartItems) {
     return $totalPrice;
 }
 
-// Remove from cart and add to products
 function removeFromCartAndAddToProducts($conn, $productId, $userId) {
+    // Get the quantity of the product from the cart
+    $sql_get_quantity = "SELECT quantity FROM Cart WHERE userId = ? AND productId = ?";
+    $stmt_get_quantity = $conn->prepare($sql_get_quantity);
+    $stmt_get_quantity->bind_param("ii", $userId, $productId);
+    $stmt_get_quantity->execute();
+    $result = $stmt_get_quantity->get_result();
+    $row = $result->fetch_assoc();
+    $quantity = $row['quantity'];
+
     // Remove product from Cart
     $sql_delete_cart = "DELETE FROM Cart WHERE userId = ? AND productId = ?";
     $stmt_delete_cart = $conn->prepare($sql_delete_cart);
     $stmt_delete_cart->bind_param("ii", $userId, $productId);
     $stmt_delete_cart->execute();
 
-    // Get product details
-    $productDetails = getProductDetails($conn, $productId);
-
-    // Add product to Products table
-    $sql_insert_product = "INSERT INTO Products (sellerId, productName, description, price, quantity, departmentId, image, brand, Feature)
-                           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt_insert_product = $conn->prepare($sql_insert_product);
-    $stmt_insert_product->bind_param("issdiisss", $productDetails['sellerId'], $productDetails['productName'], $productDetails['description'], $productDetails['price'], $productDetails['quantity'], $productDetails['departmentId'], $productDetails['image'], $productDetails['brand'], $productDetails['Feature']);
-    $stmt_insert_product->execute();
+    // Increase product quantity in Products table
+    $sql_increase_quantity = "UPDATE Products SET quantity = quantity + ? WHERE productId = ?";
+    $stmt_increase_quantity = $conn->prepare($sql_increase_quantity);
+    $stmt_increase_quantity->bind_param("ii", $quantity, $productId);
+    $stmt_increase_quantity->execute();
 }
+
 
 // Get product details
 function getProductDetails($conn, $productId) {

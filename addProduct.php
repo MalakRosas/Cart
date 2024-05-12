@@ -76,24 +76,43 @@ if ($sellerResult) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add product</title>
-    <link rel="stylesheet" href="style/addProduct.css">
+    <title>Admin Dashboard</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="style/sellerDashboard.css">
 </head>
 
 <body>
-    <div class="topnav">
-        <a class="active" href="index.php">Home</a>
-        <a href="about.html">About</a>
-        <a href="categories.html">Categories</a>
-        <a href="offers.html">Offers</a>
-        <a href="cart.html">Shopping Cart</a>
-        <a href="account.html" class="account">Account</a>
-        <a href="signup.html" class="account">Sign-Up</a>
-        <a href="signin.html" class="account">Sign-In</a>
-    </div>
-
-    <form method="post" class="add" enctype="multipart/form-data">
-        <p>Product name:</p>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="style/images/logo.png" alt="Logo">
+                    <h2>Lorem<span class="text-muted">ispum</span></h2>
+                </div>
+                <div class="close" id="btn_close">
+                    <i class="material-icons-sharp">close</i>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="adminDashboard" class="active">
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Seller Dashboard</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Log out </h3>
+                </a>
+            </div>
+        </aside>
+        <main>
+            <h1>Dashboard</h1>
+            <div class="date">
+                <input type="date">
+            </div>
+<form id="form" method="post" class="form" enctype="multipart/form-data">        <p>Product name:</p>
         <input class="value" type="text" name="productName" placeholder="Product name" required><br>
 
         <p>Brand:</p>
@@ -128,7 +147,7 @@ if ($sellerResult) {
 
         <button id="myButton" name="add" class="button">Add product</button>
     </form>
-
+        </main>
 </body>
 
 </html>

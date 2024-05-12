@@ -17,7 +17,6 @@
             <ul id="navbar">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="shop.php" class="active">Shop</a></li>
-                <li><a href="#">Blog</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="cart.php">Cart</a></li>
