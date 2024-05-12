@@ -42,11 +42,10 @@ if (isset($_POST['productId'])) {
         <div>
             <ul id="navbar">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="shop.php" class="active">Shop</a></li>
-                <li><a href="#">Blog</a></li>
+                <li><a href="shop.php" >Shop</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="cart.php">Cart</a></li>
+                <li><a href="cart.php"class="active">Cart</a></li>
                 <li><a href="signin.html"><i class="fas fa-sign-in-alt"></i></a></li>
             </ul>
         </div>
@@ -57,13 +56,14 @@ if (isset($_POST['productId'])) {
     </section>
 
     <section id="cart" class="section-p1">
+    <table width="100%">
         <table>
             <thead>
                 <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Action</th>
+                    <td>Product</td>
+                    <td>Quantity</td>
+                    <td>Price</td>
+                    <td>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -75,7 +75,7 @@ if (isset($_POST['productId'])) {
                         <td>
                             <form method="post">
                                 <input type="hidden" name="productId" value="<?php echo $cartItem['productId']; ?>">
-                                <button type="submit" name="removeFromCart">Remove & Add to Products</button>
+                                <button type="submit" name="removeFromCart"><i class="fas fa-times-circle"></i></button>
                             </form>
                         </td>
                     </tr>

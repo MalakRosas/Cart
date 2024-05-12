@@ -447,3 +447,39 @@ body {
   /* Change border color on focus */
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+thead {
+  background-color: #444; /* Dark gray */
+  color: #fff; /* White */
+}
+
+tbody {
+  background-color: #555; /* Slightly lighter gray */
+  color: #fff; /* White */
+}
+
+tr {
+  border-bottom: 1px solid #888; /* Light gray */
+}
+
+td, th {
+  padding: 10px;
+  text-align: left;
+}
+
+td {
+  vertical-align: middle;
+}
+
+/* Styling for the remove button */
+button[type="submit"] {
+  background-color: transparent;
+  border: none;
+  color: #fff; /* White */
+  cursor: pointer;
+}

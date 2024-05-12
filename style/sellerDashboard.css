@@ -2,8 +2,8 @@
 
 /* ROOT VARIABLES */
 :root {
-    --color-primary: #ff3863;
-    --color-danger: #ff7782;
+    --color-primary: #0077ff;
+    --color-danger: #45a5ff;
     --color-success: #41fib6;
     --color-warning: #ffbb55;
     --color-white: #202528;
@@ -415,3 +415,50 @@ main .recent-order a {
     .right .recent-updates h2 {
         margin-bottom: 0.8rem;
     }
+    form {
+        background-color: var(--color-white);
+        padding: var(--card-padding);
+        border-radius: var(--border-radius);
+        box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+        grid-template-columns: repeat(3, 1fr);
+
+    }
+    
+    form p {
+        font-weight: 500;
+        margin-bottom: 0.6rem;
+    }
+    
+    form .value {
+        width: 100%;
+        padding: 0.6rem 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid var(--color-info-dark);
+        border-radius: var(--border-radius);
+        font-size: 0.88rem;
+    }
+    
+    form select {
+        appearance: none;
+        background: transparent;
+    }
+    
+    form select option {
+        background-color: var(--color-white);
+    }
+    
+    form .button {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        padding: 0.6rem 1.6rem;
+        border: none;
+        border-radius: var(--border-radius);
+        font-size: 0.88rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    form .button:hover {
+        background-color: var(--color-primary-variant);
+    }
+    
