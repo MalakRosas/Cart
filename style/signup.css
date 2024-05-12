@@ -1,15 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 /* signup styling */
 /* Resetting styles */
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
-}
-
+    font-family: Poppins, sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Global Styles */
+  
+  h1 {
+    font-size: 50px;
+    line-height: 64px;
+    color: #f0f0f0;
+    /* Changed color to light gray */
+  }
+  
+  h2 {
+    font-size: 46px;
+    line-height: 54px;
+    color: #f0f0f0;
+    /* Changed color to light gray */
+  }
+  
+  h4 {
+    font-size: 20px;
+    color: #f0f0f0;
+    /* Changed color to light gray */
+  }
+  
+  h6 {
+    font-weight: 700;
+    font-size: 12px;
+  }
+    
+  
 body {
-    background-image: linear-gradient(rgba(29, 28, 28, 0.8), rgba(0, 0, 0, 0.8)), url("images/blouse-2597205_640.jpg");
+    background-color: #070707;
 }
 
 .container {
@@ -28,7 +58,7 @@ body {
     left: 50%;
     border-radius: 20px;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(44, 44, 44, 0.8);
     padding: 40px 60px 70px;
     text-align: center;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
@@ -37,11 +67,11 @@ body {
 .formBox h1 {
     font-size: 30px;
     margin-bottom: 60px;
-    color: #272529;
+    color: #ffffff;
 }
 
 .inputField {
-    background-color: rgba(225, 225, 225, 0.8);
+    background-color: rgba(88, 88, 88, 0.8);
     /*input fileds mt2b4 lz2a feb3dha*/
     margin: 15px 0;
     border-radius: 3px;
@@ -61,7 +91,7 @@ input {
 
 .inputField i {
     margin-left: 15px;
-    color: #999;
+    color: #ffffff;
 }
 
 

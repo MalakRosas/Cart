@@ -155,6 +155,15 @@ if (isset($_POST['productId'])) {
         <p>@Perfect web programmers team ! </p>
         </div>
     </footer>
+    <script>
+    // JavaScript function to redirect to payment page
+    function redirectToPaymentPage() {
+        window.location.href = "pay.html";
+    }
+
+    // Add event listener to the button
+    document.getElementById("completeOrderBtn").addEventListener("click", redirectToPaymentPage);
+</script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <script src="style/nindex.js"></script>
