@@ -127,6 +127,8 @@ b {
 }
 
 aside {
+    background-color: #202528;
+
     height: 100vh;
 }
 
@@ -152,6 +154,7 @@ aside .close {
 }
 
 aside .sidebar {
+    background-color: #202528;
     display: flex;
     flex-direction: column;
     height: 86vh;
