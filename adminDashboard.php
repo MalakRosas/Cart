@@ -156,17 +156,17 @@
                     <span class="material-icons-sharp">menu</span>
                 </button>
                 <div class="theme-toggler">
-                    <span class="material-icons-sharp active ">light_mode</span>
-                    <span class="material-icons-sharp">dark_mode</span>
+                    <span class="material-icons-sharp">light_mode</span>
+                    <span class="material-icons-sharp active">dark_mode</span>
 
                 </div>
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>Ahmed</b></p>
-                        <small class="text-muted">Admin</small>
+                        <p>Hey, <b>Admin</b></p>
+                        <small class="text-muted">Hello world</small>
                     </div>
                     <div class="profile-photo">
-                        <img src="#">
+                        <img src="style/icon.png">
                     </div>
                 </div>
             </div>

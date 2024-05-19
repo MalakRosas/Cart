@@ -16,7 +16,6 @@
     align-items: center;
     min-height: 100vh;
     background-image: linear-gradient(rgba(29, 28, 28, 0.8), rgba(0, 0, 0, 0.8)), url("images/tamanna-rumee-eD1RNYzzUxc-unsplash.jpg");
-
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -55,10 +54,15 @@
     font-size: 15px;
     border: none;
     background-color: rgba(225, 225, 225, 0.8);
-
 }
 
+.paymentInputBox img {
+    height: 34px;
+    margin-top: 5px;
+    filter: drop-shadow(0 0 1px #000);
+}
 
+/* Styling submit button */
 form .paymentSubmitBtn {
     width: 100%;
     padding: 12px;
@@ -78,19 +82,13 @@ form .paymentSubmitBtn:hover {
     background: #650101;
 }
 
-.paymentInputBox img {
-    height: 34px;
-    margin-top: 5px;
-    filter: drop-shadow(0 0 1px #000);
-}
-
+/* Header styles */
 #header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px 80px;
     background: #1a1a1a;
-    /* Changed background color to darker gray */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
     z-index: 999;
     position: sticky;
@@ -115,14 +113,12 @@ form .paymentSubmitBtn:hover {
     font-size: 16px;
     font-weight: 600;
     color: #f0f0f0;
-    /* Changed link color to light gray */
     transition: 0.3s ease;
 }
 
 #navbar li a:hover,
 #navbar li a.active {
     color: #fff;
-    /* Changed link color to white */
 }
 
 #navbar li a.active:after,
@@ -131,16 +127,73 @@ form .paymentSubmitBtn:hover {
     width: 30%;
     height: 2px;
     background: #faaed2;
-    /* Changed underline color to light pink */
     position: absolute;
     bottom: -4px;
     left: 20px;
 }
 
+/* Footer styles */
 footer {
     background-color: #111;
     color: #fff;
     text-align: center;
-    padding: 1rem 0;
+    padding: 20px 0;
+}
+
+footer .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+footer .logo {
+    margin-bottom: 30px;
+}
+
+footer h4 {
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+footer p {
+    font-size: 13px;
+    margin: 0 0 8px 0;
+}
+
+footer a {
+    font-size: 13px;
+    text-decoration: none;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+footer .follow {
+    margin-top: 20px;
+}
+
+footer .follow i {
+    color: #465b52;
+    padding-right: 4px;
+    cursor: pointer;
+}
+
+footer .follow i:hover,
+footer a:hover {
+    color: yellow;
+}
+
+footer .install .row img {
+    margin: 10px 0 15px 0;
+    padding: 10px;
+}
+
+footer .install p {
+    padding: 5px;
+}
+
+footer .copyright {
+    text-align: center;
+    width: 100%;
 }
 
